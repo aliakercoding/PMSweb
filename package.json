@@ -1,0 +1,26 @@
+{
+  "name": "pmsweb-alpha",
+  "version": "1.0.0",
+  "description": "Cloud Based Pharmacy Management System by Ali Aker for Coding (alpha-ver.)",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "PMSWEB"
+  ],
+  "author": "Ali Aker for Coding",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.3",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

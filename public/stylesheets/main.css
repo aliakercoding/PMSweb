@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+@import url("/font/bootstrap-icons.css");
+
+/* Arabic Functionaliy*/
+body {
+    direction: rtl;
+    text-align: right;
+    font-family: "Cairo", sans-serif;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.client-address-addon {
+  resize: none;
+}
+
+.left-checkbox label {
+  text-align: right;
+  float: right;
+  font-weight: bold;    
+}
+
+.left-checkbox input[type=checkbox] {
+  margin-left: 0;
+}

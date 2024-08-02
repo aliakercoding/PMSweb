@@ -1,0 +1,177 @@
+<!-- Top navigation bar -->
+<nav class="navbar navbar-expand-lg bg-success" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand">برنامج إدارة مبيعات الصيدليات</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav me-auto">
+                <a class="nav-link active" aria-current="page" href="#">تسجيل الدخول<i
+                        class="bi bi-box-arrow-in-left"></i></a>
+            </div>
+        </div>
+    </div>
+</nav>
+<br>
+<!-- Menu bar -->
+<div>
+    <ul class="nav nav-tabs nav-fill">
+        <!-- ITEMS -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false"><i class="bi bi-diagram-3-fill ms-1"></i>الأصناف</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" href="/admin/listallitems"><i class="bi bi-list-columns"></i><span
+                            style="padding-left: 30px; margin-right: 10px;">عرض كل الأصناف
+                        </span></a>
+                </li>
+                <hr class="dropdown-divider">
+
+                <li>
+
+                    <a class="dropdown-item" href="/admin/definenewitem"><i class="bi bi-upc-scan"></i><span
+                            style="padding-left: 30px; margin-right: 10px;">تعريف صنف
+                            جديد</span></a>
+                </li>
+
+                <hr class="dropdown-divider">
+                <li>
+                    <a class="dropdown-item" href="#"><i class="bi bi-stickies"></i><span
+                            style="margin-right: 10px;">طباعة ملصقات أصناف</span></a>
+                </li>
+
+            </ul>
+        </li>
+        <!-- PURCHASES -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false"><i class="bi bi-box-seam-fill ms-1"></i>فواتير المشتريات</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-receipt"></i><span class="pe-1 ms-3">إضافة
+                            فاتورة مشتريات جديدة</span></a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-counterclockwise"></i><span
+                            class="pe-1">تنفيذ مرتجع لفاتورة شراء سابقة</span></a></li>
+            </ul>
+        </li>
+        <!-- SALES -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false"><i class="bi bi-cart-check-fill ms-1"></i>فواتير المبيعات</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card"></i><span class="pe-1 ms-3">إضافة
+                            فاتورة مبيعات جديدة</span></a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-counterclockwise"></i><span
+                            class="pe-1 ms-1">تنفيذ مرتجع لفاتورة بيع سابقة</span></a></li>
+            </ul>
+        </li>
+        <!-- TRANSFERS -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false"><i class="bi bi-arrow-left-right ms-1"></i>التحويلات</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-bar-left"></i><span class="pe-1">إستلام
+                            تحويل من جهة</span></a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-bar-right"></i><span class="pe-1 ms-2">إرسال
+                            تحويل إلي جهة</span></a></li>
+            </ul>
+        </li>
+        <!-- REPORTS -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false"><i class="bi bi-bar-chart-fill ms-1"></i>التقارير</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-reception-2"></i><span
+                            style="padding-left: 40px; margin-right: 15px;">تقرير إجمالي مشتريات</span></a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-reception-3"></i><span class="pe-3 ms-5">تقرير
+                            إجمالي مبيعات</span></a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-diagram-2-fill"></i><span class="pe-3 ms-5">تقرير
+                            إجمالي أصناف</span></a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-calendar-month"></i><span class="pe-3 ms-1">تقرير
+                            تاريخ صلاحية الأصناف</span></a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-repeat"></i><span class="pe-3 ms-5">تقرير
+                            حركة الأصناف</span></a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-left-circle"></i><span
+                            style="padding-left: 15px; margin-right: 15px;">تقرير التحويلات المستلمة</span></a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-right-circle"></i><span
+                            style="padding-left: 25px; margin-right: 15px;">تقرير التحويلات المرسلة</span></a></li>
+            </ul>
+        </li>
+        <!-- ADMIN TOOLS -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false"><i class="bi bi-person-fill ms-1"></i>بيانات إدارية</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-percent"></i><span
+                            style="padding-left: 120px; margin-right: 30px;">إدارة العروض</span></a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i><span
+                            style="padding-left: 105px; margin-right: 30px;">إدارة المشتريات</span></a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-clipboard-check"></i><span
+                            style="padding-left: 40px; margin-right: 30px;">التحقق من توافر الأصناف</span></a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-list-check"></i><span
+                            style="padding-left: 25px; margin-right: 30px;">إنشاء طلب بنواقص الصيدلية</span></a>
+                </li>
+            </ul>
+        </li>
+        <!-- EXTRA TOOLS -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false"><i class="bi bi-patch-plus-fill ms-1"></i>بيانات إضافية</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-bootstrap"></i><span
+                            style="padding-left: 150px; margin-right: 10px;">إدارة العلامات التجارية</span></a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-person-lines-fill"></i><span
+                            style="padding-left: 160px; margin-right: 10px;">إدارة عملاء الصيدلية</span></a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-database-up"></i><span
+                            style="padding-left:80px; margin-right: 10px;">إجراء تحديث يدوي لقاعدة
+                            البيانات</span></a></li>
+            </ul>
+        </li>
+        <!-- HELP -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false"><i class="bi bi-patch-question-fill ms-1"></i>مساعدة</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i><span
+                            style="padding-left: 90px; margin-right: 10px;">إعدادات البرنامج</span></a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-cloud-arrow-up"></i><span
+                            style="padding-left: 45px; margin-right: 10px;">البحث عن ترقية للبرنامج</span></a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-book-half"></i><span
+                            style="padding-left: 120px; margin-right: 10px;">كتيب الشرح</span></a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-check-circle-fill"></i><span
+                            style="padding-left: 100px; margin-right: 10px;">تسجيل البرنامج</span></a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle-fill"></i><span
+                            style="padding-left: 125px; margin-right: 8px;">عن البرنامج</span></a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,64 @@
+<div class="container mt-3">
+    <div class="accordion" id="accordionAddNewUser">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#MainUserData"
+                    aria-expanded="true" aria-controls="MainUserData">
+                    بيانات المستخدم الأساسية
+                </button>
+            </h2>
+            <div id="MainUserData" class="accordion-collapse collapse show" data-bs-parent="#accordionAddNewUser">
+                <div class="accordion-body">
+                    {{!-- USER CODE --}}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="UserCode-addon">كود المستخدم</span>
+                        <input type="text" class="form-control" placeholder="مثال: PMS01" aria-label="UserCode"
+                            aria-describedby="UserCode-addon" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="كود المستخدم يكون باللغة الإنجليزية فقط"
+                            oninput="this.value=this.value.replace(/[^0-9A-Za-z\s]/g,'');">
+                    </div>
+                    {{!-- USER PASSNAME --}}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="UserPassName-addon">إسم الدخول</span>
+                        <input type="text" class="form-control" placeholder="مثال: user1" aria-label="UserPassName"
+                            aria-describedby="UserPassName-addon" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="إسم الدخول يكون باللغة الإنجليزية فقط"
+                            oninput="this.value=this.value.replace(/[^0-9A-Za-z\s]/g,'');">
+                    </div>
+                    {{!-- USER PASSCODE --}}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="UserPassCode-addon">كلمة المرور</span>
+                        <input type="text" class="form-control" placeholder="......." aria-label="UserPassCode"
+                            aria-describedby="UserPassCode-addon" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="كلمة المرور تكون باللغة الإنجليزية فقط"
+                            oninput="this.value=this.value.replace(/[^0-9A-Za-z\s]/g,'');">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#AdditionalUserData" aria-expanded="false" aria-controls="AdditionalUserData">
+                    بيانات المستخدم الإضافية
+                </button>
+            </h2>
+            <div id="AdditionalUserData" class="accordion-collapse collapse" data-bs-parent="#accordionAddNewUser">
+                <div class="accordion-body">
+                    {{!-- USER NAME --}}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="UserName-addon">إسم المستخدم</span>
+                        <input type="text" class="form-control" placeholder="مثال: أحمد" aria-label="UserName"
+                            aria-describedby="UserName-addon">
+                    </div>
+                    {{!-- USER EMAIL --}}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="UserEmail-addon">البريد الإلكتروني</span>
+                        <input type="email" class="form-control" placeholder="..." aria-label="UserEmail"
+                            aria-describedby="UserEmail-addon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

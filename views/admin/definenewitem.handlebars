@@ -1,0 +1,198 @@
+<!-- Body -->
+<div class="container mt-3">
+    <form action="/admin/definenewitem" method="post" class="needs-validation" novalidate>
+        <div class="accordion" id="NewItemAccordion">
+            <div class="accordion-item">
+                <!-- MAIN ITEM INFO -->
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        بيانات الصنف الأساسية
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#NewItemAccordion">
+                    <div class="accordion-body">
+                        <!-- ITEM Barcode -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="itemBarcode-addon">معرف الصنف الجديد (الباركود)</span>
+                            <input name="itemBarcode" type="number" class="form-control" placeholder="مثال: 1234567890"
+                                aria-label="itemBarcode" aria-describedby="itemBarcode-addon" required>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل معرف صنف (باركود) صحيح
+                            </div>
+                        </div>
+                        <!-- ITEM NAME -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="itemName-addon">إسم الصنف الجديد</span>
+                            <input name="itemName" type="text" class="form-control" placeholder="مثال: بانادول"
+                                aria-label="itemName" aria-describedby="itemName-addon" required>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل إسم صنف صحيح
+                            </div>
+                        </div>
+                        <!-- ITEM PRICE -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="itemPrice-addon">سعر بيع الصنف الجديد</span>
+                            <input name="itemPrice" type="number" class="form-control" placeholder="مثال: 30.6"
+                                aria-label="itemPrice" aria-describedby="itemPrice-addon" required>
+                            <span class="input-group-text" id="itemPrice-addon">جنيه مصري</span>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل سعر الصنف بطريقة صحيحة
+                            </div>
+                        </div>
+                        <!-- ITEM VAT% -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="VATPercentage-addon">النسبة المئوية لضريبة القيمة
+                                المضافة</span>
+                            <input name="VATPercentage" type="number" class="form-control" placeholder="مثال: 15%"
+                                aria-label="VATPercentage" aria-describedby="VATPercentage-addon" required>
+                            <span class="input-group-text" id="VATPercentage-addon">%</span>
+                            <div class="invalid-feedback">
+                                قيمة خاطئة للنسبة
+                            </div>
+                        </div>
+                        <!-- ITEM VAT VALUE -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="VATvalue-addon">قيمة الضريبة</span>
+                            <input name="VATvalue" type="number" class="form-control" placeholder="مثال: 4.59"
+                                aria-label="VATvalue" aria-describedby="VATvalue-addon" required>
+                            <span class="input-group-text" id="VATvalue-addon">جنيه مصري</span>
+                            <div class="invalid-feedback">
+                                قيمة خاطئة لقيمة الضريبة
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <!-- ADDITIONAL ITEM INFO -->
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        بيانات الصنف الإضافية
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#NewItemAccordion">
+                    <div class="accordion-body">
+                        <!-- UNITS OF ITEMS -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="itemUits-addon">عدد الوحدات داخل الصنف</span>
+                            <input name="itemUits" type="number" class="form-control" placeholder="مثال: 3" aria-label="itemUits"
+                                aria-describedby="itemUits-addon" required>
+                                <div class="invalid-feedback">
+                                من فضلك أدخل عدد صحيح
+                            </div>
+                        </div>
+                        <!-- PARTS OF UNIT -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="itemParts-addon">عدد الأجزاء داخل الوحدة</span>
+                            <input name="itemParts" type="number" class="form-control" placeholder="مثال: 10" aria-label="itemParts"
+                                aria-describedby="itemParts-addon" required>
+                                 <div class="invalid-feedback">
+                                من فضلك أدخل عدد أجزاء صحيح
+                            </div>
+                        </div>
+                        <!-- ACQUIRED POITS WHEN PURCHASED -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="AcquiredPoints-addon">عدد النقاط المكتسبة عند
+                                الشراء</span>
+                            <input name="AcquiredPoints" type="number" class="form-control" placeholder="مثال: 1.175"
+                                aria-label="AcquiredPoints" aria-describedby="AcquiredPoints-addon" required>
+                                <div class="invalid-feedback">
+                                من فضلك أدخل رقم صحيح
+                            </div>
+                        </div>
+                         <!-- ACQUIRED POITS WHEN PURCHASED -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="UserAcquiredPoints-addon">عدد النقاط المكتسبة عند
+                                الشراء</span>
+                            <input name="UserAcquiredPoints" type="number" class="form-control" value="1"
+                                aria-label="UserAcquiredPoints" aria-describedby="UserAcquiredPoints-addon" readonly>
+                                <div class="invalid-feedback">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <!-- EXTEDED ITEM INFO -->
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                            بيانات ملحقة
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#NewItemAccordion">
+                        <div class="accordion-body">
+                            <!-- CATALOG RELATED -->
+                            <div class="input-group mb-3 has-validation">
+                                <label class="input-group-text" for="CatalogSelector">تابع لكاتالوج</label>
+                                <select name="CatalogSelector" class="form-select" id="CatalogSelector" required>
+                                    <option>اختر الكاتالوج...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                 <div class="invalid-feedback">
+                                من فضلك قم بإختيار الكاتالوج بشكل صحيح
+                            </div>
+                            </div>
+                            <!-- SECTIO RELATED -->
+                            <div class="input-group mb-3 has-validation">
+                                <label class="input-group-text" for="SectionSelector">تابع لقسم</label>
+                                <select name="SectionSelector" class="form-select" id="SectionSelector" required>
+                                    <option>اختر القسم...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                من فضلك قم بإختيار القسم بشكل صحيح
+                            </div>
+                            </div>
+                            <!-- BRAD RELATED -->
+                            <div class="input-group mb-3 has-validation">
+                                <label class="input-group-text" for="BrandSelector">تابع لماركة</label>
+                                <select name="BrandSelector" class="form-select" id="BrandSelector" required>
+                                    <option>اختر الماركة...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                من فضلك قم بإختيار الماركة بشكل صحيح
+                            </div>
+                            </div>
+                            <!-- AC RELATED -->
+                            <div class="input-group mb-3 has-validation">
+                                <label class="input-group-text" for="ACSelector">يحتوي علي مادة</label>
+                                <select name="ACSelector" class="form-select" id="ACSelector" required>
+                                    <option>اختر المادة...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                 <div class="invalid-feedback">
+                                من فضلك قم بإختيار المادة الفعالة بشكل صحيح
+                            </div>
+                            </div>
+                            <!-- REQUIRE PRESCRIPTION? -->
+                            <div class="form-check form-switch">
+                                <input name="PrescriptionSwitcher" class="form-check-input" type="checkbox" role="switch" id="PrescriptionSwitcher"
+                                    >
+                                <label class="form-check-label" for="PrescriptionSwitcher">هل يتطلب الصنف وصفة
+                                    طبية؟</label>
+                                     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto my-2 py-2 text-center border">
+            <button type="submit" class="btn btn-outline-success" id="InsertNewItem">إعتماد الصنف
+                الجديد</button>
+
+        </div>
+    </form>
+</div>
