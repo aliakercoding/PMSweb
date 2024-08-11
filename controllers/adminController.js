@@ -5,7 +5,9 @@ module.exports = {
   },
 
   listallitemsGetMethod: (req, res) => {
-    res.render("admin/listallitems");
+    ITEM.find().lean().then((getallitems) => {
+      res.render("admin/listallitems", { getallitems: getallitems });
+    });
   },
 
   listallitemsPostMethod: (req, res) => {
@@ -26,12 +28,13 @@ module.exports = {
       parts_per_unit: req.body.itemParts,
       customer_acquired_points: req.body.AcquiredPoints,
       user_acquired_points: req.body.UserAcquiredPoints,
-      require_prescription: Boolean(req.body.PrescriptionSwitcher)
+      require_prescription: Boolean(req.body.PrescriptionSwitcher),
     });
 
-    newItem.save().then(postMethod =>{
+    newItem.save().then((postMethod) => {
       console.log(postMethod);
-      req.flash('success-message', 'تم الإعتماد بنجاح');
+      req.flash("success-message", "تم الإعتماد بنجاح");
+      res.redirect("/admin/listallitems");
     });
   },
 };

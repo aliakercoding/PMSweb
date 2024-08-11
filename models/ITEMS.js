@@ -51,6 +51,15 @@ const ItemsSchema = new Schema({
     type: Boolean,
     required: true,
   },
+
+  catalog_related:{
+    type: mongoose.Types.ObjectId,
+    ref: 'CATALOG'
+  },
+  section_related:{
+    type: mongoose.Types.ObjectId,
+    ref: 'SECTION'
+  }
 });
 
 module.exports = mongoose.model("ITEM", ItemsSchema);
