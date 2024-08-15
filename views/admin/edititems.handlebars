@@ -16,7 +16,8 @@
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="itemBarcode-addon">معرف الصنف الجديد (الباركود)</span>
                             <input name="itemBarcode" type="number" class="form-control" placeholder="مثال: 1234567890"
-                                aria-label="itemBarcode" aria-describedby="itemBarcode-addon" required>
+                                aria-label="itemBarcode" aria-describedby="itemBarcode-addon"
+                                value="{{edititems.item_barcode}}" required>
                             <div class="invalid-feedback">
                                 من فضلك أدخل معرف صنف (باركود) صحيح
                             </div>
@@ -25,7 +26,8 @@
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="itemName-addon">إسم الصنف الجديد</span>
                             <input name="itemName" type="text" class="form-control" placeholder="مثال: بانادول"
-                                aria-label="itemName" aria-describedby="itemName-addon" required>
+                                aria-label="itemName" aria-describedby="itemName-addon" value="{{edititems.item_name}}"
+                                required>
                             <div class="invalid-feedback">
                                 من فضلك أدخل إسم صنف صحيح
                             </div>
@@ -34,7 +36,8 @@
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="itemPrice-addon">سعر بيع الصنف الجديد</span>
                             <input name="itemPrice" type="number" class="form-control" placeholder="مثال: 30.6"
-                                aria-label="itemPrice" aria-describedby="itemPrice-addon" required>
+                                aria-label="itemPrice" aria-describedby="itemPrice-addon"
+                                value="{{edititems.item_retail_price}}" required>
                             <span class="input-group-text" id="itemPrice-addon">جنيه مصري</span>
                             <div class="invalid-feedback">
                                 من فضلك أدخل سعر الصنف بطريقة صحيحة
@@ -45,7 +48,8 @@
                             <span class="input-group-text" id="VATPercentage-addon">النسبة المئوية لضريبة القيمة
                                 المضافة</span>
                             <input name="VATPercentage" type="number" class="form-control" placeholder="مثال: 15%"
-                                aria-label="VATPercentage" aria-describedby="VATPercentage-addon" required>
+                                aria-label="VATPercentage" aria-describedby="VATPercentage-addon"
+                                value="{{edititems.vat_percentage}}" required>
                             <span class="input-group-text" id="VATPercentage-addon">%</span>
                             <div class="invalid-feedback">
                                 قيمة خاطئة للنسبة
@@ -55,7 +59,8 @@
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="VATvalue-addon">قيمة الضريبة</span>
                             <input name="VATvalue" type="number" class="form-control" placeholder="مثال: 4.59"
-                                aria-label="VATvalue" aria-describedby="VATvalue-addon" required>
+                                aria-label="VATvalue" aria-describedby="VATvalue-addon" value="{{edititems.vat_value}}"
+                                required>
                             <span class="input-group-text" id="VATvalue-addon">جنيه مصري</span>
                             <div class="invalid-feedback">
                                 قيمة خاطئة لقيمة الضريبة
@@ -77,39 +82,43 @@
                         <!-- UNITS OF ITEMS -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="itemUits-addon">عدد الوحدات داخل الصنف</span>
-                            <input name="itemUits" type="number" class="form-control" placeholder="مثال: 3" aria-label="itemUits"
-                                aria-describedby="itemUits-addon" required>
-                                <div class="invalid-feedback">
+                            <input name="itemUits" type="number" class="form-control" placeholder="مثال: 3"
+                                aria-label="itemUits" aria-describedby="itemUits-addon"
+                                value="{{edititems.units_per_item}}" required>
+                            <div class="invalid-feedback">
                                 من فضلك أدخل عدد صحيح
                             </div>
                         </div>
                         <!-- PARTS OF UNIT -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="itemParts-addon">عدد الأجزاء داخل الوحدة</span>
-                            <input name="itemParts" type="number" class="form-control" placeholder="مثال: 10" aria-label="itemParts"
-                                aria-describedby="itemParts-addon" required>
-                                 <div class="invalid-feedback">
+                            <input name="itemParts" type="number" class="form-control" placeholder="مثال: 10"
+                                aria-label="itemParts" aria-describedby="itemParts-addon"
+                                value="{{edititems.parts_per_unit}}" required>
+                            <div class="invalid-feedback">
                                 من فضلك أدخل عدد أجزاء صحيح
                             </div>
                         </div>
-                        <!-- ACQUIRED POITS WHEN PURCHASED -->
+                        <!-- CUSTOMER ACQUIRED POITS WHEN PURCHASED -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="AcquiredPoints-addon">عدد النقاط المكتسبة عند
                                 الشراء</span>
                             <input name="AcquiredPoints" type="number" class="form-control" placeholder="مثال: 1.175"
-                                aria-label="AcquiredPoints" aria-describedby="AcquiredPoints-addon" required>
-                                <div class="invalid-feedback">
+                                aria-label="AcquiredPoints" aria-describedby="AcquiredPoints-addon"
+                                value="{{edititems.customer_acquired_points}}" required>
+                            <div class="invalid-feedback">
                                 من فضلك أدخل رقم صحيح
                             </div>
                         </div>
-                         <!-- ACQUIRED POITS WHEN PURCHASED -->
+                        <!-- USER ACQUIRED POITS WHEN PURCHASED -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="UserAcquiredPoints-addon">عدد النقاط المكتسبة عند
                                 الشراء</span>
                             <input name="UserAcquiredPoints" type="number" class="form-control" value="1"
-                                aria-label="UserAcquiredPoints" aria-describedby="UserAcquiredPoints-addon" readonly>
-                                <div class="invalid-feedback">
-                               
+                                aria-label="UserAcquiredPoints" aria-describedby="UserAcquiredPoints-addon"
+                                value="{{edititems.user_acquired_points}}" readonly>
+                            <div class="invalid-feedback">
+
                             </div>
                         </div>
                     </div>
@@ -133,9 +142,9 @@
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                                 <div class="invalid-feedback">
-                                من فضلك قم بإختيار الكاتالوج بشكل صحيح
-                            </div>
+                                <div class="invalid-feedback">
+                                    من فضلك قم بإختيار الكاتالوج بشكل صحيح
+                                </div>
                             </div>
                             <!-- SECTIO RELATED -->
                             <div class="input-group mb-3 has-validation">
@@ -147,8 +156,8 @@
                                     <option value="3">Three</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                من فضلك قم بإختيار القسم بشكل صحيح
-                            </div>
+                                    من فضلك قم بإختيار القسم بشكل صحيح
+                                </div>
                             </div>
                             <!-- BRAD RELATED -->
                             <div class="input-group mb-3 has-validation">
@@ -160,8 +169,8 @@
                                     <option value="3">Three</option>
                                 </select>
                                 <div class="invalid-feedback">
-                                من فضلك قم بإختيار الماركة بشكل صحيح
-                            </div>
+                                    من فضلك قم بإختيار الماركة بشكل صحيح
+                                </div>
                             </div>
                             <!-- AC RELATED -->
                             <div class="input-group mb-3 has-validation">
@@ -172,17 +181,17 @@
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                                 <div class="invalid-feedback">
-                                من فضلك قم بإختيار المادة الفعالة بشكل صحيح
-                            </div>
+                                <div class="invalid-feedback">
+                                    من فضلك قم بإختيار المادة الفعالة بشكل صحيح
+                                </div>
                             </div>
                             <!-- REQUIRE PRESCRIPTION? -->
+
                             <div class="form-check form-switch">
-                                <input name="PrescriptionSwitcher" class="form-check-input" type="checkbox" role="switch" id="PrescriptionSwitcher"
-                                    >
+                                <input name="PrescriptionSwitcher" class="form-check-input" type="checkbox"
+                                    role="switch" value="{{edititems.require_prescription}}" id="PrescriptionSwitcher">
                                 <label class="form-check-label" for="PrescriptionSwitcher">هل يتطلب الصنف وصفة
                                     طبية؟</label>
-                
                             </div>
                         </div>
                     </div>
@@ -190,8 +199,7 @@
             </div>
         </div>
         <div class="mx-auto my-2 py-2 text-center border">
-            <button type="submit" class="btn btn-outline-success" id="InsertNewItem">إعتماد الصنف
-                الجديد</button>
+            <button type="submit" class="btn btn-warning" id="EditItem">إعتماد التعديلات</button>
 
         </div>
     </form>

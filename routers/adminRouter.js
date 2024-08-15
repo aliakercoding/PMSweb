@@ -18,4 +18,7 @@ router.all("/*", (req, res, next) => {
   .get(adminController.definenewitemGetMethod)
   .post(adminController.definenewitemPostMethod);
 
+  router.route('/edititems/:id')
+  .get(adminController.edititemsGetMethod);
+
   module.exports = router;

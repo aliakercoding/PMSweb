@@ -1,12 +1,12 @@
 const ITEM = require("../models/ITEMS");
 module.exports = {
   index: (req, res) => {
-    res.render("admin/index");
+    res.render('admin/index');
   },
 
   listallitemsGetMethod: (req, res) => {
     ITEM.find().lean().then((getallitems) => {
-      res.render("admin/listallitems", { getallitems: getallitems });
+      res.render('admin/listallitems', { getallitems: getallitems });
     });
   },
 
@@ -15,7 +15,7 @@ module.exports = {
   },
 
   definenewitemGetMethod: (req, res) => {
-    res.render("admin/definenewitem");
+    res.render('admin/definenewitem');
   },
   definenewitemPostMethod: (req, res) => {
     const newItem = new ITEM({
@@ -34,7 +34,19 @@ module.exports = {
     newItem.save().then((postMethod) => {
       console.log(postMethod);
       req.flash("success-message", "تم الإعتماد بنجاح");
-      res.redirect("/admin/listallitems");
+      res.redirect('/admin/listallitems');
+    }); 
+  },
+
+  edititemsGetMethod: (req, res) =>{
+    const itemID = req.params.id;
+    ITEM.findById(itemID).lean().then(edititems=>{
+      res.render('admin/edititems', {edititems: edititems});
     });
+
+  },
+
+  edititemsPostMethod: (req, res) =>{
+
   },
 };
