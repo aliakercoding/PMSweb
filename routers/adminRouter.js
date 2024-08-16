@@ -21,4 +21,10 @@ router.all("/*", (req, res, next) => {
   router.route('/edititems/:id')
   .get(adminController.edititemsGetMethod);
 
+  router.route('/deleteitems/:id')
+  .delete(adminController.deleteitemsPostMethod);
+
+  router.route('/listallcatalogs')
+  .get(adminController.listallcatalogsGetMethod)
+  .post(adminController.definenewcatalogPostMethod);
   module.exports = router;

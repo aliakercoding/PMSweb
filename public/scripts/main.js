@@ -78,3 +78,35 @@ var input = $('#PrescriptionSwitcher').val()
 if(input === "true"){
 $("#PrescriptionSwitcher").prop('checked', true);
 }
+ 
+//ADDING NEW CATALOG
+  $("#catalogCreator").on('click', function(e){
+    e.preventDefault();
+    var catalogData = $("#catalogName").val();
+    $.ajax({
+      url : '/admin/listallcatalogs',
+      type : 'POST',
+      data : {catalogName : catalogData},
+      success : function(response){
+        
+var html = `<tr>
+                <td>${response.catalog_name}</td>
+                <td>{عدد الأصناف التابعة للكاتالوج}</td>
+                <td class="d-flex justify-content-center">
+                    <a href="/admin/editcatalogs/${response.id}" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" data-bs-title="تعديل بيانات الكاتالوج"><i
+                            class="bi bi-pencil"></i></a>
+                    <form action="/admin/deletecatalogs/${response.id}?action=DELETE" method="post">
+                        <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-html="true" data-bs-title="حذف الكاتالوج <b>- لا يمكن الرجوع في هذا الإجراء</b>"><i
+                                class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>`;
+
+
+            $(".refreshCatalog").append(html);
+      }
+    })
+  });

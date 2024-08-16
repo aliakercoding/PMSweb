@@ -4,7 +4,7 @@
     <div class="row g-2">
       <div class="col-10">
         <div class="p-3">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         </div>
       </div>
       <div class="col-2">
@@ -28,18 +28,19 @@
     </thead>
     <tbody>
       {{#each getallitems}}
-        <tr>
-          <th scope="row">{{item_barcode}}</th>
-          <td>{{item_name}}</td>
-          <td>رصيد الصنف</td>
-          <td>
-            <a href="/admin/edititems/{{_id}}" class="btn btn-warning"
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            data-bs-title="تعديل بيانات صنف"
-          ><i class="bi bi-pencil"></i></a>
-          </td>
-        </tr>
+      <tr>
+        <th scope="row">{{item_barcode}}</th>
+        <td>{{item_name}}</td>
+        <td>رصيد الصنف</td>
+        <td class="d-flex justify-content-center">
+          <a href="/admin/edititems/{{_id}}" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
+            data-bs-placement="bottom" data-bs-title="تعديل بيانات صنف"><i class="bi bi-pencil"></i></a>
+          <form action="/admin/deleteitems/{{_id}}?action=DELETE" method="post">
+            <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="حذف الصنف <b>- لا يمكن الرجوع في هذا الإجراء</b>"><i class="bi bi-trash"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
       {{/each}}
     </tbody>
   </table>
