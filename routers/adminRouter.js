@@ -7,24 +7,51 @@ router.all("/*", (req, res, next) => {
 
   next();
 }),
-    
   router.route("/").get(adminController.index);
 
-  router.route('/listallitems')
+router
+  .route("/listallitems")
   .get(adminController.listallitemsGetMethod)
   .post(adminController.listallitemsPostMethod);
 
-  router.route('/definenewitem')
+router
+  .route("/definenewitem")
   .get(adminController.definenewitemGetMethod)
   .post(adminController.definenewitemPostMethod);
 
-  router.route('/edititems/:id')
-  .get(adminController.edititemsGetMethod);
+router
+  .route("/edititems/:id")
+  .get(adminController.edititemsGetMethod)
+  .put(adminController.edititemsPostMethod);
 
-  router.route('/deleteitems/:id')
-  .delete(adminController.deleteitemsPostMethod);
+router.route("/deleteitems/:id")
+.delete(adminController.deleteitemsPostMethod);
 
-  router.route('/listallcatalogs')
+router
+  .route("/listallcatalogs")
   .get(adminController.listallcatalogsGetMethod)
   .post(adminController.definenewcatalogPostMethod);
-  module.exports = router;
+
+  router.route('/editcatalogs/:id')
+  .get(adminController.editcatalogsGetMethod)
+  .post(adminController.editcatalogsPostMethod);
+
+router
+  .route("/listallsections")
+  .get(adminController.listallsectionsGetMethod)
+  .post(adminController.definenewsectionPostMethod);
+
+router.route("/listallbrands").get(adminController.listallbrandsGetMethod);
+
+router
+  .route("/definenewbrand")
+  .get(adminController.definenewbrandGetMethod)
+  .post(adminController.definenewbrandPostMethod);
+
+router.route("/editbrands/:id").get(adminController.editbrandsGetMethod);
+
+router
+  .route("/deletebrands/:id")
+  .delete(adminController.deletebrandsPostMethod);
+
+module.exports = router;

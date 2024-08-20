@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody class="refreshCatalog">
-            {{#each listallcatalogs}}
+            {{#each getcatalogs}}
             <tr>
                 <td>{{catalog_name}}</td>
                 <td>{عدد الأصناف التابعة للكاتالوج}</td>
@@ -48,16 +48,18 @@
                     <!-- CATALOG NAME -->
                     <div class="input-group mb-3 has-validation">
                         <span class="input-group-text" id="catalogName-addon">إسم الصنف الجديد</span>
-                        <input name="catalogName" id="catalogName" type="text" class="form-control" placeholder="مثال: أقراص"
+                        <input name="catalogName" id="catalogName" value="{{currentcatalog.catalog_name}}" type="text" class="form-control" placeholder="مثال: أقراص"
                             aria-label="catalogName" aria-describedby="catalogName-addon" required>
+                             <input name="catalogID" id="catalogID" value="{{currentcatalog._id}}" type="hidden" class="form-control" placeholder="مثال: أقراص"
+                            aria-label="catalogID" aria-describedby="catalogID-addon" required>
                         <div class="invalid-feedback">
-                            من فضلك أدخل إسم كاتالوج صحيح
+                            من فضلك أدخل إسم كاتالوج صحيح   
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-outline-success" id="catalogCreator" type="submit">إعتماد الكاتالوج الجديد</button>
+                        <button class="btn btn-warning" id="catalogUpdater" type="submit">تعديل بيانات الكاتالوج</button>
                     </div>
-                </form>
+                </form> 
             </div>
         </div>
     </div>

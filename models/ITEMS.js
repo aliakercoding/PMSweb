@@ -59,6 +59,10 @@ const ItemsSchema = new Schema({
   section_related:{
     type: mongoose.Types.ObjectId,
     ref: 'SECTION'
+  },
+  brand_related:{
+    type: mongoose.Types.ObjectId,
+    ref: 'BRAND'
   }
 });
 

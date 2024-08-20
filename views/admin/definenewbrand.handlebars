@@ -1,0 +1,49 @@
+<!-- Body -->
+<div class="container mt-3">
+    <form action="/admin/definenewbrand" method="post" class="needs-validation" novalidate>
+
+        <div class="accordion" id="NewBrandAccordion">
+            <div class="accordion-item">
+                <!-- MAIN BRAND INFO -->
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        بيانات العلامة التجارية الأساسية
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#NewBrandAccordion">
+                    <div class="accordion-body">
+                        <!-- BRAND ID -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="brandid-addon">كود العلامة</span>
+                            <input type="number" class="form-control" aria-label="brandid"
+                                aria-describedby="brandid-addon" disabled>
+                            <div class="pe-2">
+                                <i class="bi bi-info-circle-fill"></i>
+                                يتم إنشاء كود العلامة بشكل تلقائي
+                            </div>
+                        </div>
+
+                        <!-- BRAND NAME -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="brandname-addon">اسم العلامة</span>
+                            <input name="brandName" type="text" class="form-control" placeholder="مثال: بيوديرما"
+                                aria-label="brandname" aria-describedby="brandname-addon" required>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل اسم العلامة التجارية بشكل صحيح
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="mx-auto my-2 py-2 text-center border">
+            <button type="submit" class="btn btn-outline-success" id="InsertNewBrand">إعتماد العلامة التجارية
+                الجديدة</button>
+
+        </div>
+    </form>
+</div>

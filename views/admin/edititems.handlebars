@@ -1,6 +1,6 @@
 <!-- Body -->
 <div class="container mt-3">
-    <form action="/admin/definenewitem" method="post" class="needs-validation" novalidate>
+    <form action="/admin/edititems/{{edititems._id}}?action=PUT" method="post" class="needs-validation" novalidate>
         <div class="accordion" id="NewItemAccordion">
             <div class="accordion-item">
                 <!-- MAIN ITEM INFO -->
@@ -35,8 +35,8 @@
                         <!-- ITEM PRICE -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="itemPrice-addon">سعر بيع الصنف الجديد</span>
-                            <input name="itemPrice" type="number" class="form-control" placeholder="مثال: 30.6"
-                                aria-label="itemPrice" aria-describedby="itemPrice-addon"
+                            <input name="itemPrice" type="number" step="0.001" class="form-control"
+                                placeholder="مثال: 30.6" aria-label="itemPrice" aria-describedby="itemPrice-addon"
                                 value="{{edititems.item_retail_price}}" required>
                             <span class="input-group-text" id="itemPrice-addon">جنيه مصري</span>
                             <div class="invalid-feedback">
@@ -47,9 +47,9 @@
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="VATPercentage-addon">النسبة المئوية لضريبة القيمة
                                 المضافة</span>
-                            <input name="VATPercentage" type="number" class="form-control" placeholder="مثال: 15%"
-                                aria-label="VATPercentage" aria-describedby="VATPercentage-addon"
-                                value="{{edititems.vat_percentage}}" required>
+                            <input name="VATPercentage" type="number" step="0.001" class="form-control"
+                                placeholder="مثال: 15%" aria-label="VATPercentage"
+                                aria-describedby="VATPercentage-addon" value="{{edititems.vat_percentage}}" required>
                             <span class="input-group-text" id="VATPercentage-addon">%</span>
                             <div class="invalid-feedback">
                                 قيمة خاطئة للنسبة
@@ -58,9 +58,9 @@
                         <!-- ITEM VAT VALUE -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="VATvalue-addon">قيمة الضريبة</span>
-                            <input name="VATvalue" type="number" class="form-control" placeholder="مثال: 4.59"
-                                aria-label="VATvalue" aria-describedby="VATvalue-addon" value="{{edititems.vat_value}}"
-                                required>
+                            <input name="VATvalue" type="number" step="0.001" class="form-control"
+                                placeholder="مثال: 4.59" aria-label="VATvalue" aria-describedby="VATvalue-addon"
+                                value="{{edititems.vat_value}}" required>
                             <span class="input-group-text" id="VATvalue-addon">جنيه مصري</span>
                             <div class="invalid-feedback">
                                 قيمة خاطئة لقيمة الضريبة
@@ -103,9 +103,10 @@
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="AcquiredPoints-addon">عدد النقاط المكتسبة عند
                                 الشراء</span>
-                            <input name="AcquiredPoints" type="number" class="form-control" placeholder="مثال: 1.175"
-                                aria-label="AcquiredPoints" aria-describedby="AcquiredPoints-addon"
-                                value="{{edititems.customer_acquired_points}}" required>
+                            <input name="AcquiredPoints" type="number" step="0.001" class="form-control"
+                                placeholder="مثال: 1.175" aria-label="AcquiredPoints"
+                                aria-describedby="AcquiredPoints-addon" value="{{edititems.customer_acquired_points}}"
+                                required>
                             <div class="invalid-feedback">
                                 من فضلك أدخل رقم صحيح
                             </div>
@@ -114,7 +115,7 @@
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="UserAcquiredPoints-addon">عدد النقاط المكتسبة عند
                                 الشراء</span>
-                            <input name="UserAcquiredPoints" type="number" class="form-control" value="1"
+                            <input name="UserAcquiredPoints" type="number" step="0.001" class="form-control" value="1"
                                 aria-label="UserAcquiredPoints" aria-describedby="UserAcquiredPoints-addon"
                                 value="{{edititems.user_acquired_points}}" readonly>
                             <div class="invalid-feedback">
@@ -137,23 +138,26 @@
                             <div class="input-group mb-3 has-validation">
                                 <label class="input-group-text" for="CatalogSelector">تابع لكاتالوج</label>
                                 <select name="CatalogSelector" class="form-select" id="CatalogSelector" required>
-                                    <option>اختر الكاتالوج...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    {{#select edititems.catalog_related}}
+                                    {{#each editcatalogs}}
+                                    <option value="{{_id}}">{{catalog_name}}</option>
+                                    {{/each}}
+                                    {{/select}}
                                 </select>
+
                                 <div class="invalid-feedback">
                                     من فضلك قم بإختيار الكاتالوج بشكل صحيح
                                 </div>
                             </div>
-                            <!-- SECTIO RELATED -->
+                            <!-- SECTION RELATED -->
                             <div class="input-group mb-3 has-validation">
                                 <label class="input-group-text" for="SectionSelector">تابع لقسم</label>
                                 <select name="SectionSelector" class="form-select" id="SectionSelector" required>
-                                    <option>اختر القسم...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    {{#select edititems.section_related}}
+                                    {{#each editsections}}
+                                    <option value="{{_id}}">{{section_name}}</option>
+                                    {{/each}}
+                                    {{/select}}
                                 </select>
                                 <div class="invalid-feedback">
                                     من فضلك قم بإختيار القسم بشكل صحيح
@@ -163,10 +167,11 @@
                             <div class="input-group mb-3 has-validation">
                                 <label class="input-group-text" for="BrandSelector">تابع لماركة</label>
                                 <select name="BrandSelector" class="form-select" id="BrandSelector" required>
-                                    <option>اختر الماركة...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    {{#select edititems.brand_related}}
+                                    {{#each editbrands}}
+                                    <option value="{{_id}}">{{brand_name}}</option>
+                                    {{/each}}
+                                    {{/select}}
                                 </select>
                                 <div class="invalid-feedback">
                                     من فضلك قم بإختيار الماركة بشكل صحيح
@@ -199,7 +204,7 @@
             </div>
         </div>
         <div class="mx-auto my-2 py-2 text-center border">
-            <button type="submit" class="btn btn-warning" id="EditItem">إعتماد التعديلات</button>
+            <button type="submit" class="btn btn-warning" id="UpdateItem">إعتماد التعديلات</button>
 
         </div>
     </form>

@@ -3,11 +3,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const hbs = require("express-handlebars");
-const { mongoDbUrl, PORT, globalVariables } = require("./config/configurations");
+const {
+  mongoDbUrl,
+  PORT,
+  globalVariables,
+} = require("./config/configurations");
+const { selectOption } = require("./config/customFunctions");
 const flash = require("connect-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
-
 
 // Database Connetor
 mongoose
@@ -35,11 +39,14 @@ app.use(
 );
 app.use(flash());
 app.use(globalVariables);
-app.engine("handlebars", hbs.engine({ defaultLayout: "main" }));
+app.engine(
+  "handlebars",
+  hbs.engine({ defaultLayout: "main", helpers: { select: selectOption } })
+);
 app.set("view engine", "handlebars");
 
 // Configuring Method Override
-app.use(methodOverride('action'));
+app.use(methodOverride("action"));
 
 // Configuring Routers
 const mainRouter = require("./routers/mainRouter");

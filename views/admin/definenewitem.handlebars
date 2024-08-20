@@ -33,7 +33,7 @@
                         <!-- ITEM PRICE -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="itemPrice-addon">سعر بيع الصنف الجديد</span>
-                            <input name="itemPrice" type="number" class="form-control" placeholder="مثال: 30.6"
+                            <input name="itemPrice" type="number" step="0.001" class="form-control" placeholder="مثال: 30.6"
                                 aria-label="itemPrice" aria-describedby="itemPrice-addon" required>
                             <span class="input-group-text" id="itemPrice-addon">جنيه مصري</span>
                             <div class="invalid-feedback">
@@ -44,7 +44,7 @@
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="VATPercentage-addon">النسبة المئوية لضريبة القيمة
                                 المضافة</span>
-                            <input name="VATPercentage" type="number" class="form-control" placeholder="مثال: 15%"
+                            <input name="VATPercentage" type="number" step="0.001" class="form-control" placeholder="مثال: 15%"
                                 aria-label="VATPercentage" aria-describedby="VATPercentage-addon" required>
                             <span class="input-group-text" id="VATPercentage-addon">%</span>
                             <div class="invalid-feedback">
@@ -54,7 +54,7 @@
                         <!-- ITEM VAT VALUE -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="VATvalue-addon">قيمة الضريبة</span>
-                            <input name="VATvalue" type="number" class="form-control" placeholder="مثال: 4.59"
+                            <input name="VATvalue" type="number" step="0.001" class="form-control" placeholder="مثال: 4.59"
                                 aria-label="VATvalue" aria-describedby="VATvalue-addon" required>
                             <span class="input-group-text" id="VATvalue-addon">جنيه مصري</span>
                             <div class="invalid-feedback">
@@ -77,18 +77,18 @@
                         <!-- UNITS OF ITEMS -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="itemUits-addon">عدد الوحدات داخل الصنف</span>
-                            <input name="itemUits" type="number" class="form-control" placeholder="مثال: 3" aria-label="itemUits"
-                                aria-describedby="itemUits-addon" required>
-                                <div class="invalid-feedback">
+                            <input name="itemUits" type="number" class="form-control" placeholder="مثال: 3"
+                                aria-label="itemUits" aria-describedby="itemUits-addon" required>
+                            <div class="invalid-feedback">
                                 من فضلك أدخل عدد صحيح
                             </div>
                         </div>
                         <!-- PARTS OF UNIT -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="itemParts-addon">عدد الأجزاء داخل الوحدة</span>
-                            <input name="itemParts" type="number" class="form-control" placeholder="مثال: 10" aria-label="itemParts"
-                                aria-describedby="itemParts-addon" required>
-                                 <div class="invalid-feedback">
+                            <input name="itemParts" type="number" class="form-control" placeholder="مثال: 10"
+                                aria-label="itemParts" aria-describedby="itemParts-addon" required>
+                            <div class="invalid-feedback">
                                 من فضلك أدخل عدد أجزاء صحيح
                             </div>
                         </div>
@@ -96,20 +96,20 @@
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="AcquiredPoints-addon">عدد النقاط المكتسبة عند
                                 الشراء</span>
-                            <input name="AcquiredPoints" type="number" class="form-control" placeholder="مثال: 1.175"
+                            <input name="AcquiredPoints" type="number" step="0.001" class="form-control" placeholder="مثال: 1.175"
                                 aria-label="AcquiredPoints" aria-describedby="AcquiredPoints-addon" required>
-                                <div class="invalid-feedback">
+                            <div class="invalid-feedback">
                                 من فضلك أدخل رقم صحيح
                             </div>
                         </div>
-                         <!-- ACQUIRED POITS WHEN PURCHASED -->
+                        <!-- ACQUIRED POITS WHEN PURCHASED -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="UserAcquiredPoints-addon">عدد النقاط المكتسبة عند
                                 الشراء</span>
-                            <input name="UserAcquiredPoints" type="number" class="form-control" value="1"
+                            <input name="UserAcquiredPoints" type="number" step="0.001" class="form-control" value="1"
                                 aria-label="UserAcquiredPoints" aria-describedby="UserAcquiredPoints-addon" readonly>
-                                <div class="invalid-feedback">
-                               
+                            <div class="invalid-feedback">
+
                             </div>
                         </div>
                     </div>
@@ -128,40 +128,38 @@
                             <div class="input-group mb-3 has-validation">
                                 <label class="input-group-text" for="CatalogSelector">تابع لكاتالوج</label>
                                 <select name="CatalogSelector" class="form-select" id="CatalogSelector" required>
-                                    <option>اختر الكاتالوج...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    {{#each getallcatalogs}}
+                                    <option value="{{_id}}">{{catalog_name}}</option>
+                                    {{/each}}
                                 </select>
-                                 <div class="invalid-feedback">
-                                من فضلك قم بإختيار الكاتالوج بشكل صحيح
+
+                                <div class="invalid-feedback">
+                                    من فضلك قم بإختيار الكاتالوج بشكل صحيح
+                                </div>
                             </div>
-                            </div>
-                            <!-- SECTIO RELATED -->
+                            <!-- SECTION RELATED -->
                             <div class="input-group mb-3 has-validation">
                                 <label class="input-group-text" for="SectionSelector">تابع لقسم</label>
                                 <select name="SectionSelector" class="form-select" id="SectionSelector" required>
-                                    <option>اختر القسم...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    {{#each getallsections}}
+                                    <option value="{{_id}}">{{section_name}}</option>
+                                    {{/each}}
                                 </select>
                                 <div class="invalid-feedback">
-                                من فضلك قم بإختيار القسم بشكل صحيح
-                            </div>
+                                    من فضلك قم بإختيار القسم بشكل صحيح
+                                </div>
                             </div>
                             <!-- BRAD RELATED -->
                             <div class="input-group mb-3 has-validation">
                                 <label class="input-group-text" for="BrandSelector">تابع لماركة</label>
                                 <select name="BrandSelector" class="form-select" id="BrandSelector" required>
-                                    <option>اختر الماركة...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    {{#each getallbrands}}
+                                    <option value="{{_id}}">{{brand_name}}</option>
+                                    {{/each}}
                                 </select>
                                 <div class="invalid-feedback">
-                                من فضلك قم بإختيار الماركة بشكل صحيح
-                            </div>
+                                    من فضلك قم بإختيار الماركة بشكل صحيح
+                                </div>
                             </div>
                             <!-- AC RELATED -->
                             <div class="input-group mb-3 has-validation">
@@ -172,17 +170,17 @@
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                                 <div class="invalid-feedback">
-                                من فضلك قم بإختيار المادة الفعالة بشكل صحيح
-                            </div>
+                                <div class="invalid-feedback">
+                                    من فضلك قم بإختيار المادة الفعالة بشكل صحيح
+                                </div>
                             </div>
                             <!-- REQUIRE PRESCRIPTION? -->
                             <div class="form-check form-switch">
-                                <input name="PrescriptionSwitcher" class="form-check-input" type="checkbox" role="switch" id="PrescriptionSwitcher"
-                                    >
+                                <input name="PrescriptionSwitcher" class="form-check-input" type="checkbox"
+                                    role="switch" id="PrescriptionSwitcher">
                                 <label class="form-check-label" for="PrescriptionSwitcher">هل يتطلب الصنف وصفة
                                     طبية؟</label>
-                
+
                             </div>
                         </div>
                     </div>

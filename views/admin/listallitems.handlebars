@@ -23,6 +23,9 @@
         <th scope="col">المعرف الدولي للصنف</th>
         <th scope="col">اسم الصنف</th>
         <th scope="col">رصيد الصنف</th>
+        <th scope="col">تابع لكاتالوج</th>
+        <th scope="col">تابع لقسم</th>
+        <th scope="col">تابع لماركة</th>
         <th scope="col">عمليات علي الصنف</th>
       </tr>
     </thead>
@@ -32,6 +35,9 @@
         <th scope="row">{{item_barcode}}</th>
         <td>{{item_name}}</td>
         <td>رصيد الصنف</td>
+        <td>{{catalog_related.catalog_name}}</td>
+        <td>{{section_related.section_name}}</td>
+        <td>{{brand_related.brand_name}}</td>
         <td class="d-flex justify-content-center">
           <a href="/admin/edititems/{{_id}}" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
             data-bs-placement="bottom" data-bs-title="تعديل بيانات صنف"><i class="bi bi-pencil"></i></a>
