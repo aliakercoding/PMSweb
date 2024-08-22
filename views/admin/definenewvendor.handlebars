@@ -1,0 +1,70 @@
+<!-- Body -->
+    <div class="container mt-3">
+        <form action="/admin/definenewvendor" method="post" class="needs-validation" novalidate>
+        <div class="accordion" id="NewVendorAccordion">
+            <div class="accordion-item">
+                <!-- MAIN VENDOR INFO -->
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        بيانات المورد الأساسية
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#NewVendorAccordion">
+                    <div class="accordion-body">
+                        <!-- VENDOR ID -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="vendorid-addon">كود المورد</span>
+                            <input type="number" name="vendorID" class="form-control" placeholder="مثال: 1234567890"
+                                aria-label="vendorid" aria-describedby="vendorid-addon" disabled>
+                                <div class="pe-2">
+                                <i class="bi bi-info-circle-fill"></i>
+                                يتم إنشاء كود المورد بشكل تلقائي
+                            </div>
+                        </div>
+                        <!-- VENDOR NAME -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="vendorname-addon">اسم المورد</span>
+                            <input type="text" name="vendorName" class="form-control" placeholder="من فضلك ادخل اسم المورد هنا"
+                                aria-label="vendorname" aria-describedby="vendorname-addon" required>
+                                  <div class="invalid-feedback">
+                                من فضلك أدخل اسم المورد بشكل صحيح
+                            </div>
+                        </div>
+                           <!-- VENDOR CONTACT -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="vendorcontact-addon">رقم التواصل مع المورد</span>
+                            <input type="text" name="vendorContact" class="form-control" placeholder="من فضلك ادخل رقم التواصل هنا"
+                                aria-label="vendorcontact" aria-describedby="vendorcontact-addon" required>
+                                  <div class="invalid-feedback">
+                                من فضلك أدخل رقم التواصل بشكل صحيح
+                            </div>
+                        </div>
+                           <!-- VENDOR ADDRESS -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="vendoraddress-addon">عنوان المورد (قيمة اختيارية)</span>
+                            <input type="text" name="vendorAddress" class="form-control" placeholder="من فضلك ادخل العنوان هنا"
+                                aria-label="vendoraddress" aria-describedby="vendoraddress-addon">
+                        </div>
+
+                           <!-- VENDOR DEBIT -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="vendordebit-addon">المديونية</span>
+                            <input type="number" name="vendorDebit" step="0.001" class="form-control" value="0"
+                                aria-label="vendordebit" aria-describedby="vendordebit-addon" required>
+                                  <div class="invalid-feedback">
+                                قيمة خاطئة
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        <div class="mx-auto my-2 py-2 text-center border">
+            <button type="submit" class="btn btn-outline-success" id="InsertNewVendor">إعتماد المورد
+                </button>
+        </div>
+        </form>
+    </div>

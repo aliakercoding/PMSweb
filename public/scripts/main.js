@@ -111,7 +111,6 @@ var html = `<tr>
     })
   });
 
-
   //UPDATING CATALOG
   $("#catalogUpdater").on('click', function(e){
     e.preventDefault();
@@ -155,6 +154,21 @@ var html = `<tr>
 
 
             $(".refreshSection").append(html);
+      }
+    })
+  });
+
+   //UPDATING SECTION
+   $("#sectionUpdater").on('click', function(e){
+    e.preventDefault();
+    var sectionData = $("#sectionName").val();
+    var id = $("#sectionID").val();
+    $.ajax({
+      url : `/admin/editsections/${id}`,
+      type : 'POST',
+      data : {sectionName : sectionData},
+      success : function(response){
+window.location.href = response.url;
       }
     })
   });

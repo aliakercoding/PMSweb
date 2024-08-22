@@ -1,0 +1,42 @@
+<!-- Body -->
+<div class="container mt-3">
+    <div class="border text-center p-2">
+        <a href="/admin/definenewvendor" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-title="إضافة مورد جديد"><i class="bi bi-plus-square"></i></a>
+    </div>
+    <hr>
+    <!-- ITEMS TRANSFERRED -->
+    <table class="table table-hover border">
+        <thead>
+            <tr>
+                <th scope="col">كود المورد</th>
+                <th scope="col">اسم المورد</th>
+                <th scope="col">إجمالي المديونية</th>
+                <th scope="col">إجمالي فواتير الشراء</th>
+                <th scope="col">عمليات علي المورد</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each listallvendors}}
+            <tr>
+                <th scope="row">{{_id}}</th>
+                <td>{{vendor_name}}</td>
+                <td>{{total_debit}}</td>
+                <td>{إجمالي فواتير الشراء}</td>
+                  <td class="d-flex justify-content-center">
+                    <a href="/admin/editvendors/{{_id}}" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" data-bs-title="تعديل بيانات المورد"><i
+                            class="bi bi-pencil"></i></a>
+                    <form action="/admin/deletevendors/{{_id}}?action=DELETE" method="post">
+                        <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-html="true" data-bs-title="حذف المورد <b>- لا يمكن الرجوع في هذا الإجراء</b>"><i
+                                class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</div>

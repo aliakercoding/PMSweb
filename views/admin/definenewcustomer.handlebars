@@ -1,0 +1,99 @@
+<!-- Body -->
+<div class="container mt-3">
+    <form action="/admin/definenewcustomer" method="post" class="needs-validation" novalidate>
+        <div class="accordion" id="NewClientAccordion">
+            <div class="accordion-item">
+                <!-- MAIN CLIENT INFO -->
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        بيانات العميل الأساسية
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#NewClientAccordion">
+                    <div class="accordion-body">
+                        <!-- CLIENT ID -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="clientid-addon">كود العميل</span>
+                            <input type="number" name="clientID" class="form-control" placeholder="مثال: 1234567890"
+                                aria-label="clientid" aria-describedby="clientid-addon" disabled>
+                            <div class="pe-2">
+                                <i class="bi bi-info-circle-fill"></i>
+                                يتم إنشاء كود المورد بشكل تلقائي
+                            </div>
+                        </div>
+                        <!-- CLIENT NAME -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="clientname-addon">اسم العميل</span>
+                            <input type="text" name="customerName" class="form-control" placeholder="مثال: على"
+                                aria-label="clientname" aria-describedby="clientname-addon" required>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل اسم العميل بشكل صحيح
+                            </div>
+                        </div>
+                        <!-- CLIENT PHONE -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="clientphone-addon">رقم هاتف العميل</span>
+                            <input type="text" name="customerContact" class="form-control" placeholder="مثال: 001"
+                                aria-label="clientphone" aria-describedby="clientphone-addon" required>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل رقم التواصل بشكل صحيح
+                            </div>
+                        </div>
+                        <!-- CLIENT ADDRESS -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="clientaddress-addon">عنوان العميل</span>
+                            <textarea name="customerAddress" class="form-control client-address-addon"
+                                aria-label="clientaddress" required></textarea>
+                                <div class="invalid-feedback">
+                                من فضلك أدخل العنوان بشكل صحيح
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <!-- MAIN CLIENT INFO -->
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        بيانات العميل الإضافية
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#NewClientAccordion">
+                    <div class="accordion-body">
+
+                        <!-- CLIENT ACQUIRED POINTS -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="clientphone-addon">نقاط العميل</span>
+                            <input type="number" name="customerAcquiredPoints" value="0" step="0.001"
+                                class="form-control" aria-label="clientphone" aria-describedby="clientphone-addon"
+                                required>
+                            <div class="invalid-feedback">
+                                قيمة خاطئة
+                            </div>
+                        </div>
+                        <!-- CLIENT CREDIT -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="clientphone-addon">رصيد العميل</span>
+                            <input type="number" name="customerCredit" value="0" step="0.001" class="form-control"
+                                aria-label="clientphone" aria-describedby="clientphone-addon" required>
+                            <div class="invalid-feedback">
+                                قيمة خاطئة
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-auto my-2 py-2 text-center border">
+            <button type="submit" class="btn btn-outline-success" id="InsertNewVendor">إعتماد بيانات العميل
+            </button>
+
+        </div>
+    </form>
+</div>

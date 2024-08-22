@@ -2,6 +2,8 @@ const ITEM = require("../models/ITEMS");
 const CATALOG = require("../models/CATALOGS");
 const SECTION = require("../models/SECTIONS");
 const BRAND = require("../models/BRANDS");
+const VENDOR = require('../models/VENDORS');
+const CUSTOMER = require('../models/CUSTOMERS');
 
 module.exports = {
   index: (req, res) => {
@@ -193,11 +195,6 @@ const getcatalogs = await CATALOG.find().lean();
 CATALOG.findById(catalogID).lean().then(currentcatalog=>{
   res.render('admin/editcatalogs' , {currentcatalog: currentcatalog , getcatalogs:getcatalogs});
 })
-
-
-
-
-
   },
 
   editcatalogsPostMethod: (req , res) =>{
@@ -210,8 +207,8 @@ CATALOG.findById(catalogID).then(updatingCatalog =>{
 
   updatingCatalog.save().then(updatedCatalog =>{
     res.status(200).json({url: '/admin/listallcatalogs'});
-  })
-})
+  });
+});
 }
   },
   
@@ -237,6 +234,29 @@ CATALOG.findById(catalogID).then(updatingCatalog =>{
         res.status(200).json(listaddedSection);
       });
     }
+  },
+
+  editsectionsGetMethod : async (req, res) =>{
+const sectionID = req.params.id;
+const getsections = await SECTION.find().lean();
+
+SECTION.findById(sectionID).lean().then(currentsection =>{
+  res.render('admin/editsections' , {currentsection:currentsection ,getsections:getsections});
+})
+  },
+
+  editsectionsPostMethod : (req,res) =>{
+const sectionID = req.params.id;
+const sectionNewName = req.body.sectionName;
+
+if(sectionNewName){
+  SECTION.findById(sectionID).then(updatingSection =>{
+    updatingSection.section_name = sectionNewName;
+    updatingSection.save().then(updatedSection =>{
+      res.status(200).json({url: '/admin/listallsections'});
+    });
+  });
+}
   },
 
   // BRANDS CONTROLLING
@@ -273,6 +293,19 @@ CATALOG.findById(catalogID).then(updatingCatalog =>{
       });
   },
 
+  editbrandsPostMethod : (req, res) =>{
+const brandID = req.params.id;
+
+BRAND.findById(brandID).then(updatebrands=>{
+  updatebrands.brand_name = req.body.brandName;
+
+  updatebrands.save().then(updatedBrand =>{
+    req.flash('success-message' , `تم تعديل بيانات الماركة ${updatedBrand.brand_name} بنجاح`)
+  res.redirect('/admin/listallbrands');
+  });
+});
+  },
+
   deletebrandsPostMethod: (req, res) => {
     BRAND.findByIdAndDelete(req.params.id)
       .lean()
@@ -284,4 +317,110 @@ CATALOG.findById(catalogID).then(updatingCatalog =>{
         res.redirect("/admin/listallbrands");
       });
   },
+
+  //VENDORS CONTROLLING
+  listallvendorsGetMethod : (req,res)=>{
+    VENDOR.find().lean().then(listallvendors=>{
+      res.render('admin/listallvendors' , {listallvendors:listallvendors});
+    });
+  },
+
+  definenewvendorGetMethod : (req, res) =>{
+res.render('admin/definenewvendor');
+  },
+
+  definenewvendorPostMethod : (req,res)=>{
+    const newVendor = new VENDOR({
+      vendor_name: req.body.vendorName,
+      vendor_contact: req.body.vendorContact,
+      vendor_address: req.body.vendorAddress,
+      total_debit: req.body.vendorDebit
+    });
+
+    newVendor.save().then(postMethod=>{
+      console.log(postMethod);
+      req.flash('success-message' , 'تم الاعتماد بنجاح');
+      res.redirect('/admin/listallvendors');
+    }); 
+  },
+
+  editvendorsGetMethod: (req,res) =>{
+const vendorID = req.params.id;
+VENDOR.findById(vendorID).lean().then(editvendors=>{
+  res.render('admin/editvendors' , {editvendors:editvendors});
+});
+  },
+
+  editvendorsPostMethod:(req,res)=>{
+const VendorID = req.params.id;
+
+VENDOR.findById(VendorID).then(updatevendors=>{
+  updatevendors.vendor_name = req.body.vendorName,
+  updatevendors.vendor_contact = req.body.vendorContact,
+  updatevendors.vendor_address = req.body.vendorAddress,
+  updatevendors.total_debit = req.body.vendorDebit
+
+  updatevendors.save().then(updatedVendors =>{
+    req.flash('success-message' ,  `تم تعديل بيانات المورد ${updatedVendors.vendor_name} بنجاح`);
+    res.redirect('/admin/listallvendors');
+  });
+});
+  },
+
+   //CUSTOMERS CONTROLLING
+   listallcustomersGetMethod : (req,res)=>{
+    CUSTOMER.find().lean().then(listallcustomers=>{
+      res.render('admin/listallcustomers' , {listallcustomers:listallcustomers});
+    });
+  },
+
+  definenewcustomerGetMethod : (req, res) =>{
+res.render('admin/definenewcustomer');
+  },
+
+  definenewcustomerPostMethod : (req,res)=>{
+    const newCustomer = new CUSTOMER({
+      customer_name: req.body.customerName,
+      customer_contact: req.body.customerContact,
+      customer_address: req.body.customerAddress,
+      total_acquired_points: req.body.customerAcquiredPoints,
+      total_credit: req.body.customerCredit
+    });
+
+    newCustomer.save().then(postMethod=>{
+      console.log(postMethod);
+      req.flash('success-message' , 'تم الاعتماد بنجاح');
+      res.redirect('/admin/listallcustomers');
+    }); 
+  },
+
+  editcustomersGetMethod: (req,res) =>{
+const customerID = req.params.id;
+CUSTOMER.findById(customerID).lean().then(editcustomers=>{
+  res.render('admin/editcustomers' , {editcustomers:editcustomers});
+});
+  },
+
+  editcustomersPostMethod:(req,res)=>{
+const CustomerID = req.params.id;
+
+CUSTOMER.findById(CustomerID).then(updatecustomers=>{
+  updatecustomers.customer_name = req.body.customerName,
+  updatecustomers.customer_contact = req.body.customerContact,
+  updatecustomers.customer_address = req.body.customerAddress,
+  updatecustomers.total_acquired_points = req.body.customerAcquiredPoints,
+  updatecustomers.total_credit = req.body.customerCredit
+
+  updatecustomers.save().then(updatedCustomers =>{
+    req.flash('success-message' ,  `تم تعديل بيانات العميل ${updatedCustomers.customer_name} بنجاح`);
+    res.redirect('/admin/listallcustomers');
+  });
+});
+  },
+
+
+  // PURCHASE INVOICES
+  newpurchaseinvoiceGetMethod :(req,res)=>{
+    res.render('admin/newpurchaseinvoice');
+  }
 };

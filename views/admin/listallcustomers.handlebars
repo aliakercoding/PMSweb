@@ -1,0 +1,49 @@
+<!-- Body -->
+<div class="container mt-3">
+    <div class="border text-center p-2">
+        <a href="/admin/definenewcustomer" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-title="إضافة عميل جديد"><i class="bi bi-plus-square"></i></a>
+
+    </div>
+    <hr>
+    <!-- CLIENTS TABLE-->
+    <table class="table table-hover border text-center">
+        <thead>
+            <tr>
+                <th scope="col">كود العميل</th>
+                <th scope="col">اسم العميل</th>
+                <th scope="col">رقم الهاتف</th>
+                <th scope="col">العنوان</th>
+                <th scope="col">إجمالي فواتير العميل</th>
+                <th scope="col">إجمالي نقاط العميل</th>
+                <th scope="col">رصيد العميل</th>
+                <th scope="col">عمليات علي العميل</th>
+            </tr>
+        </thead>
+        <tbody>
+{{#each listallcustomers}}
+            <tr>
+                <th scope="row">{{_id}}</th>
+                <td>{{customer_name}}</td>
+                <td>{{customer_contact}}</td>
+                <td>{{customer_address}}</td>
+                <td>{إجمالي فواتير العميل}</td>
+                <td>{{total_acquired_points}}</td>
+                <td>{{total_credit}}</td>
+                 <td class="d-flex justify-content-center">
+                    <a href="/admin/editcustomers/{{_id}}" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" data-bs-title="تعديل بيانات العميل"><i
+                            class="bi bi-pencil"></i></a>
+                    <form action="/admin/deletecustomers/{{_id}}?action=DELETE" method="post">
+                        <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-html="true" data-bs-title="حذف العميل <b>- لا يمكن الرجوع في هذا الإجراء</b>"><i
+                                class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+{{/each}}
+        </tbody>
+    </table>
+
+</div>
