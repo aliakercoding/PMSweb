@@ -1,0 +1,46 @@
+<!-- Body -->
+<div class="container mt-3">
+    <form action="/admin/catalogs/editcatalogs/{{editcatalogs._id}}?action=PUT" method="post" class="needs-validation"
+        novalidate>
+
+        <div class="accordion" id="NewCatalogAccordion">
+            <div class="accordion-item">
+                <!-- MAIN CATALOG INFO -->
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        بيانات الكتالوج الأساسية
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#NewCatalogAccordion">
+                    <div class="accordion-body">
+                        <!-- CATALOG ID -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="catalogid-addon">كود الكتالوج</span>
+                            <input type="text" value="{{editcatalogs._id}}" class="form-control" aria-label="catalogid"
+                                aria-describedby="catalogid-addon" disabled>
+                            <div class="pe-2">
+                                <i class="bi bi-info-circle-fill"></i>
+                                يتم إنشاء كود الكتالوج بشكل تلقائي
+                            </div>
+                        </div>
+
+                        <!-- CATALOG NAME -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="catalogName-addon">إسم الكتالوج الجديد</span>
+                            <input name="catalogName" id="catalogName" value="{{editcatalogs.catalog_name}}" type="text"
+                                class="form-control" placeholder="مثال: أقراص" aria-label="catalogName"
+                                aria-describedby="catalogName-addon" required>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="mx-auto my-2 py-2 text-center border">
+            <button type="submit" class="btn btn-warning" id="UpdateCatalog">تعديل بيانات الكتالوج</button>
+        </div>
+    </form>
+</div>

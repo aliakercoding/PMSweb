@@ -8,76 +8,92 @@ router.all("/*", (req, res, next) => {
   next();
 }),
 
+// MAIN ROUTER
   router.route("/").get(adminController.index);
 
-router.route("/listallitems")
+// ITEMS ROUTER
+router.route("/items/listallitems")
   .get(adminController.listallitemsGetMethod)
   .post(adminController.listallitemsPostMethod);
 
-router.route("/definenewitem")
+router.route("/items/definenewitem")
   .get(adminController.definenewitemGetMethod)
   .post(adminController.definenewitemPostMethod);
 
-router.route("/edititems/:id")
+router.route("/items/edititems/:id")
   .get(adminController.edititemsGetMethod)
   .put(adminController.edititemsPostMethod);
 
-router.route("/deleteitems/:id")
+router.route("/items/deleteitems/:id")
 .delete(adminController.deleteitemsPostMethod);
 
-router.route("/listallcatalogs")
+// CATALOGS ROUTER
+router.route("/catalogs/listallcatalogs")
   .get(adminController.listallcatalogsGetMethod)
   .post(adminController.definenewcatalogPostMethod);
 
-  router.route('/editcatalogs/:id')
+  router.route('/catalogs/editcatalogs/:id')
   .get(adminController.editcatalogsGetMethod)
-  .post(adminController.editcatalogsPostMethod);
+  .put(adminController.editcatalogsPostMethod);
 
-router.route("/listallsections")
+  router.route('/catalogs/deletecatalogs/:id')
+  .delete(adminController.deletecatalogsPostMethod);
+
+// SECTIONS ROUTER
+router.route("/sections/listallsections")
   .get(adminController.listallsectionsGetMethod)
   .post(adminController.definenewsectionPostMethod);
 
-  router.route('/editsections/:id')
+  router.route('/sections/editsections/:id')
   .get(adminController.editsectionsGetMethod)
-  .post(adminController.editsectionsPostMethod);
+  .put(adminController.editsectionsPostMethod);
 
-router.route("/listallbrands")
-.get(adminController.listallbrandsGetMethod);
+  router.route('/sections/deletesections/:id')
+  .delete(adminController.deletesectionsPostMethod);
 
-router.route("/definenewbrand")
-  .get(adminController.definenewbrandGetMethod)
-  .post(adminController.definenewbrandPostMethod);
+// BRANDS ROUTER  
+router.route("/brands/listallbrands")
+.get(adminController.listallbrandsGetMethod)
+.post(adminController.definenewbrandPostMethod);
 
-router.route("/editbrands/:id")
+router.route("/brands/editbrands/:id")
 .get(adminController.editbrandsGetMethod)
 .put(adminController.editbrandsPostMethod);
 
-router.route("/deletebrands/:id")
+router.route("/brands/deletebrands/:id")
   .delete(adminController.deletebrandsPostMethod);
 
-
-router.route('/listallvendors')
+// VENDORS ROUTER
+router.route('/vendors/listallvendors')
 .get(adminController.listallvendorsGetMethod);
 
-router.route('/definenewvendor')
+router.route('/vendors/definenewvendor')
 .get(adminController.definenewvendorGetMethod)
 .post(adminController.definenewvendorPostMethod);
 
-router.route('/editvendors/:id')
+router.route('/vendors/editvendors/:id')
 .get(adminController.editvendorsGetMethod)
 .put(adminController.editvendorsPostMethod);
 
-router.route('/listallcustomers')
+router.route('/vendors/deletevendors/:id')
+.delete(adminController.deletevendorsPostMethod);
+
+// CUSTOMERS ROUTER
+router.route('/customers/listallcustomers')
 .get(adminController.listallcustomersGetMethod);
 
-router.route('/definenewcustomer')
+router.route('/customers/definenewcustomer')
 .get(adminController.definenewcustomerGetMethod)
 .post(adminController.definenewcustomerPostMethod);
 
-router.route('/editcustomers/:id')
+router.route('/customers/editcustomers/:id')
 .get(adminController.editcustomersGetMethod)
 .put(adminController.editcustomersPostMethod);
 
+router.route('/customers/deletecustomers/:id')
+.delete(adminController.deletecustomersPostMethod);
+
+// PURCHASES ROUTER
 router.route('/purchases/newpurchase')
 .get(adminController.newpurchaseinvoiceGetMethod)  
 module.exports = router;

@@ -1,0 +1,48 @@
+<!-- Body -->
+<div class="container mt-3">
+    <form action="/admin/sections/editsections/{{editsections._id}}?action=PUT" method="post" class="needs-validation"
+        novalidate>
+
+        <div class="accordion" id="NewSectionAccordion">
+            <div class="accordion-item">
+                <!-- MAIN CATALOG INFO -->
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        بيانات القسم الأساسية
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#NewSectionAccordion">
+                    <div class="accordion-body">
+                        <!-- SECTION ID -->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="sectionid-addon">كود الكتالوج</span>
+                            <input type="text" value="{{editsections._id}}" class="form-control" aria-label="sectionid"
+                                aria-describedby="sectionid-addon" disabled>
+                            <div class="pe-2">
+                                <i class="bi bi-info-circle-fill"></i>
+                                يتم إنشاء كود القسم بشكل تلقائي
+                            </div>
+                        </div>
+                        <!-- SECTION NAME -->
+                        <div class="input-group mb-3 has-validation">
+                            <span class="input-group-text" id="sectionName-addon">إسم القسم الجديد</span>
+                            <input name="sectionName" id="sectionName" type="text" value="{{editsections.section_name}}"
+                                class="form-control" placeholder="مثال: أقراص" aria-label="sectionName"
+                                aria-describedby="sectionName-addon" required>
+                            <div class="invalid-feedback">
+                                من فضلك أدخل إسم قسم صحيح
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="mx-auto my-2 py-2 text-center border">
+            <button type="submit" class="btn btn-warning" id="UpdateSection">تعديل بيانات القسم</button>
+        </div>
+    </form>
+</div>

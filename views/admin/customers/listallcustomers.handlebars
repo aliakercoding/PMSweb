@@ -1,7 +1,7 @@
 <!-- Body -->
 <div class="container mt-3">
     <div class="border text-center p-2">
-        <a href="/admin/definenewcustomer" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+        <a href="/admin/customers/definenewcustomer" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
             data-bs-title="إضافة عميل جديد"><i class="bi bi-plus-square"></i></a>
 
     </div>
@@ -31,10 +31,10 @@
                 <td>{{total_acquired_points}}</td>
                 <td>{{total_credit}}</td>
                  <td class="d-flex justify-content-center">
-                    <a href="/admin/editcustomers/{{_id}}" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
+                    <a href="/admin/customers/editcustomers/{{_id}}" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
                         data-bs-placement="bottom" data-bs-title="تعديل بيانات العميل"><i
                             class="bi bi-pencil"></i></a>
-                    <form action="/admin/deletecustomers/{{_id}}?action=DELETE" method="post">
+                    <form action="/admin/customers/deletecustomers/{{_id}}?action=DELETE" method="post">
                         <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
                             data-bs-html="true" data-bs-title="حذف العميل <b>- لا يمكن الرجوع في هذا الإجراء</b>"><i
                                 class="bi bi-trash"></i>

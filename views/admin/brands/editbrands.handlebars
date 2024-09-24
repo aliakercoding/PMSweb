@@ -1,6 +1,6 @@
 <!-- Body -->
 <div class="container mt-3">
-    <form action="/admin/definenewbrand" method="post" class="needs-validation" novalidate>
+    <form action="/admin/brands/editbrands/{{editbrands._id}}?action=PUT" method="post" class="needs-validation" novalidate>
 
         <div class="accordion" id="NewBrandAccordion">
             <div class="accordion-item">
@@ -16,7 +16,7 @@
                         <!-- BRAND ID -->
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="brandid-addon">كود العلامة</span>
-                            <input type="number" class="form-control" aria-label="brandid"
+                            <input type="text" value="{{editbrands._id}}" class="form-control" aria-label="brandid"
                                 aria-describedby="brandid-addon" disabled>
                             <div class="pe-2">
                                 <i class="bi bi-info-circle-fill"></i>
@@ -27,7 +27,7 @@
                         <!-- BRAND NAME -->
                         <div class="input-group mb-3 has-validation">
                             <span class="input-group-text" id="brandname-addon">اسم العلامة</span>
-                            <input name="brandName" type="text" class="form-control" placeholder="مثال: بيوديرما"
+                            <input name="brandName" type="text" value="{{editbrands.brand_name}}" class="form-control" placeholder="مثال: بيوديرما"
                                 aria-label="brandname" aria-describedby="brandname-addon" required>
                             <div class="invalid-feedback">
                                 من فضلك أدخل اسم العلامة التجارية بشكل صحيح
@@ -41,7 +41,7 @@
 
         </div>
         <div class="mx-auto my-2 py-2 text-center border">
-            <button type="submit" class="btn btn-outline-success" id="InsertNewBrand">إعتماد العلامة التجارية
+            <button type="submit" class="btn btn-warning" id="UpdateBrand">تعديل العلامة التجارية
                 الجديدة</button>
 
         </div>

@@ -1,0 +1,82 @@
+<!-- Body -->
+<div class="container mt-3">
+   <div class="border text-center p-2">
+        <span data-bs-toggle="modal" data-bs-target="#addNewBrandModal">
+            <button class="btn btn-primary" onclick="clearTimeout(addtimer);" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                data-bs-title="إضافة علامة تجارية جديدة"><i class="bi bi-plus-square"></i></button>.
+        </span>
+    </div>
+    <hr>
+    <!-- BRANDS Table -->
+    <table class="table table-hover border text-center">
+        <thead>
+            <tr>
+                <th scope="col">كود العلامة</th>
+                <th scope="col">اسم العلامة</th>
+                <th scope="col">عدد الأصناف التابعة للعلامة</th>
+                <th scope="col">عمليات علي العلامة</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each listallbrands}}
+            <tr>
+                <th scope="row">{{_id}}</th>
+                <td>{{brand_name}}</td>
+                <td>{عدد الأصناف التابعة للعلامة}</td>
+                <td class="d-flex justify-content-center">
+                    <a onclick="window.open('/admin/brands/editbrands/{{_id}}', '_blank', 'width=800,height=600,location=0,titlebar=0');" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" data-bs-title="تعديل بيانات العلامة التجارية"><i
+                            class="bi bi-pencil"></i></a>
+                    <form action="/admin/brands/deletebrands/{{_id}}?action=DELETE" method="post">
+                        <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-html="true"
+                            data-bs-title="حذف العلامة التجارية <b>- لا يمكن الرجوع في هذا الإجراء</b>"><i
+                                class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+<!-- Add New Brand Modal -->
+    <div class="modal fade" id="addNewBrandModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="/admin/brands/listallbrands" method="post" class="needs-validation" novalidate>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">بيانات العلامة التجارية الجديدة</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row border pt-3 pb-3">
+                            <div class="col">
+                                <!-- BRAND NAME -->
+                                <div class="input-group mb-3 has-validation">
+                                    <span class="input-group-text" id="brandName-addon">إسم العلامة التجارية الجديدة</span>
+                                    <input name="brandName" id="brandName" type="text" class="form-control"
+                                        placeholder="مثال: أقراص" aria-label="brandName"
+                                        aria-describedby="brandName-addon" required>
+                                    <div class="invalid-feedback">
+                                        من فضلك أدخل إسم قسم صحيح
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="window.location.reload();">إغلاق</button>
+                        <button type="submit" class="btn btn-outline-success">إعتماد العلامة التجارية الجديدة</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var addtimer = setTimeout(function(){
+    location = ''
+  },3000);
+</script>

@@ -1,0 +1,79 @@
+<!-- Body -->
+<div class="container mt-3">
+    <div class="border text-center p-2">
+        <span data-bs-toggle="modal" data-bs-target="#addNewSectionModal">
+            <button id="addNewSection" onclick="clearTimeout(addtimer);" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                data-bs-title="إضافة قسم جديد"><i class="bi bi-plus-square"></i></button>.
+        </span>
+    </div>
+
+    <hr>
+    <!-- Section Table -->
+    <table class="table table-hover border text-center">
+        <thead>
+            <tr>
+                <th scope="col">اسم القسم</th>
+                <th scope="col">عدد الأصناف التابعة للقسم</th>
+                <th scope="col">عمليات علي القسم</th>
+            </tr>
+        </thead>
+        <tbody class="refreshSection">
+            {{#each listallsections}}
+            <tr>
+                <td>{{section_name}}</td>
+                <td>{عدد الأصناف التابعة للقسم}</td>
+                <td class="d-flex justify-content-center">
+                    <a onclick="window.open('/admin/sections/editsections/{{_id}}', '_blank', 'width=800,height=600,location=0,titlebar=0');"
+                        class="btn btn-warning ms-2" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="تعديل بيانات القسم"><i class="bi bi-pencil"></i></a>
+                    <form action="/admin/sections/deletesections/{{_id}}?action=DELETE" method="post">
+                        <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-html="true" data-bs-title="حذف القسم <b>- لا يمكن الرجوع في هذا الإجراء</b>"><i
+                                class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <!-- Add New Section Modal -->
+    <div class="modal fade" id="addNewSectionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="/admin/sections/listallsections" method="post" class="needs-validation" novalidate>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">بيانات القسم الجديد</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row border pt-3 pb-3">
+                            <div class="col">
+                                <!-- SECTION NAME -->
+                                <div class="input-group mb-3 has-validation">
+                                    <span class="input-group-text" id="sectionName-addon">إسم القسم الجديد</span>
+                                    <input name="sectionName" id="sectionName" type="text" class="form-control"
+                                        placeholder="مثال: أقراص" aria-label="sectionName"
+                                        aria-describedby="sectionName-addon" required>
+                                    <div class="invalid-feedback">
+                                        من فضلك أدخل إسم قسم صحيح
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="window.location.reload();">إغلاق</button>
+                            <button type="submit" class="btn btn-outline-success">إعتماد القسم الجديد</button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  var addtimer = setTimeout(function(){
+    location = ''
+  },3000);
+</script>

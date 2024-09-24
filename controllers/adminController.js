@@ -16,7 +16,7 @@ module.exports = {
       .populate(["catalog_related", "section_related", "brand_related"])
       .lean()
       .then((getallitems) => {
-        res.render("admin/listallitems", { getallitems: getallitems });
+        res.render("admin/items/listallitems", { getallitems: getallitems });
       });
   },
 
@@ -43,7 +43,7 @@ module.exports = {
                     if (!getallbrands) {
                       console.log("brands here");
                     } else {
-                      res.render("admin/definenewitem", {
+                      res.render("admin/items/definenewitem", {
                         getallcatalogs: getallcatalogs,
                         getallsections: getallsections,
                         getallbrands: getallbrands,
@@ -76,7 +76,7 @@ module.exports = {
     newItem.save().then((postMethod) => {
       console.log(postMethod);
       req.flash("success-message", "تم الإعتماد بنجاح");
-      res.redirect("/admin/listallitems");
+      res.redirect("/admin/items/listallitems");
     });
   },
 
@@ -102,7 +102,7 @@ module.exports = {
                         .then((editbrands) => {
                           if (!editbrands) {
                           } else {
-                            res.render("admin/edititems", {
+                            res.render("admin/items/edititems", {
                               edititems: edititems,
                               editcatalogs: editcatalogs,
                               editsections: editsections,
@@ -138,7 +138,7 @@ module.exports = {
 
       updateitems.save().then(updatedItem=>{
         req.flash('success-message' , `تم تعديل بيانات المنتج ${updatedItem.item_name} بنجاح`);
-        res.redirect('/admin/listallitems');
+        res.redirect('/admin/items/listallitems');
 
       });
        });
@@ -159,7 +159,7 @@ module.exports = {
           "success-message",
           `تم حذف الصنف ${deleteitems.item_name} بنجاح`
         );
-        res.redirect("/admin/listallitems");
+        res.redirect("/admin/items/listallitems");
       });
   },
 
@@ -168,95 +168,105 @@ module.exports = {
     CATALOG.find()
       .lean()
       .then((listallcatalogs) => {
-        res.render("admin/listallcatalogs", {
+        res.render("admin/catalogs/listallcatalogs", {
           listallcatalogs: listallcatalogs,
         });
       });
   },
 
   definenewcatalogPostMethod: (req, res) => {
-    var catalogName = req.body.catalogName;
+    const newCatalog = new CATALOG({
+      catalog_name: req.body.catalogName,
+    });
 
-    if (catalogName) {
-      const newCatalog = new CATALOG({
-        catalog_name: catalogName,
-      });
-      newCatalog.save().then((listaddedCatalog) => {
-        res.status(200).json(listaddedCatalog);
-      });
-    }
+    newCatalog.save().then((postMethod) => {
+      req.flash("success-message", "تم الإعتماد بنجاح");
+      res.redirect("/admin/catalogs/listallcatalogs");
+         });
+  
   },
 
-  editcatalogsGetMethod:async(req,res) =>{
+  editcatalogsGetMethod:(req,res) =>{
 const catalogID = req.params.id;
-const getcatalogs = await CATALOG.find().lean();
-
-
-CATALOG.findById(catalogID).lean().then(currentcatalog=>{
-  res.render('admin/editcatalogs' , {currentcatalog: currentcatalog , getcatalogs:getcatalogs});
+CATALOG.findById(catalogID).lean().then(editcatalogs=>{
+  res.render('admin/catalogs/editcatalogs' , {editcatalogs: editcatalogs});
 })
   },
 
   editcatalogsPostMethod: (req , res) =>{
 const catalogID = req.params.id;
-const catalogNewName = req.body.catalogName;
-
-if(catalogNewName){
 CATALOG.findById(catalogID).then(updatingCatalog =>{
-  updatingCatalog.catalog_name = catalogNewName;
+  updatingCatalog.catalog_name = req.body.catalogName;
 
   updatingCatalog.save().then(updatedCatalog =>{
-    res.status(200).json({url: '/admin/listallcatalogs'});
+    req.flash('success-message' , `تم تعديل بيانات الكتالوج ${updatedCatalog.catalog_name} بنجاح`)
+    res.redirect('/admin/catalogs/listallcatalogs');
   });
 });
-}
-  },
+},
+deletecatalogsPostMethod: (req, res) => {
+  CATALOG.findByIdAndDelete(req.params.id)
+    .lean()
+    .then((deletecatalogs) => {
+      req.flash(
+        "success-message",
+        `تم حذف الكتالوج ${deletecatalogs.catalog_name} بنجاح`
+      );
+      res.redirect("/admin/catalogs/listallcatalogs");
+    });
+},
+  
   
   // SECTIONS CONTROLLING
   listallsectionsGetMethod: (req, res) => {
     SECTION.find()
       .lean()
       .then((listallsections) => {
-        res.render("admin/listallsections", {
+        res.render("admin/sections/listallsections", {
           listallsections: listallsections,
         });
       });
   },
 
   definenewsectionPostMethod: (req, res) => {
-    var sectionName = req.body.sectionName;
+  const newSection = new SECTION({
+    section_name: req.body.sectionName
+  });
 
-    if (sectionName) {
-      const newSection = new SECTION({
-        section_name: sectionName,
-      });
-      newSection.save().then((listaddedSection) => {
-        res.status(200).json(listaddedSection);
-      });
-    }
+  newSection.save().then((postMethod)=>{
+    req.flash("success-message", "تم الإعتماد بنجاح");
+      res.redirect("/admin/sections/listallsections");
+  })
   },
 
-  editsectionsGetMethod : async (req, res) =>{
+  editsectionsGetMethod : (req, res) =>{
 const sectionID = req.params.id;
-const getsections = await SECTION.find().lean();
-
-SECTION.findById(sectionID).lean().then(currentsection =>{
-  res.render('admin/editsections' , {currentsection:currentsection ,getsections:getsections});
-})
+SECTION.findById(sectionID).lean().then(editsections =>{
+  res.render('admin/sections/editsections' , {editsections:editsections});
+});
   },
 
   editsectionsPostMethod : (req,res) =>{
 const sectionID = req.params.id;
-const sectionNewName = req.body.sectionName;
 
-if(sectionNewName){
-  SECTION.findById(sectionID).then(updatingSection =>{
-    updatingSection.section_name = sectionNewName;
-    updatingSection.save().then(updatedSection =>{
-      res.status(200).json({url: '/admin/listallsections'});
-    });
-  });
-}
+SECTION.findById(sectionID).then((updatesections)=>{
+  updatesections.section_name = req.body.sectionName;
+  updatesections.save().then((updatedSection)=>{
+    req.flash('success-message' , `تم تعديل بيانات القسم ${updatedSection.section_name} بنجاح`)
+    res.redirect('/admin/sections/listallsections');
+  })
+})
+  },
+  deletesectionsPostMethod: (req, res) => {
+    SECTION.findByIdAndDelete(req.params.id)
+      .lean()
+      .then((deletesections) => {
+        req.flash(
+          "success-message",
+          `تم حذف القسم ${deletesections.section_name} بنجاح`
+        );
+        res.redirect("/admin/sections/listallsections");
+      });
   },
 
   // BRANDS CONTROLLING
@@ -264,24 +274,19 @@ if(sectionNewName){
     BRAND.find()
       .lean()
       .then((listallbrands) => {
-        res.render("admin/listallbrands", { listallbrands: listallbrands });
+        res.render("admin/brands/listallbrands", { listallbrands: listallbrands });
       });
   },
 
-  definenewbrandGetMethod: (req, res) => {
-    res.render("admin/definenewbrand");
-  },
-
-  definenewbrandPostMethod: (req, res) => {
+ definenewbrandPostMethod: (req, res) => {
     const newBrand = new BRAND({
       brand_name: req.body.brandName,
     });
 
     newBrand.save().then((postMethod) => {
-      console.log(postMethod);
       req.flash("success-message", "تم الإعتماد بنجاح");
-      res.redirect("/admin/listallbrands");
-    });
+      res.redirect("/admin/brands/listallbrands");
+         });
   },
 
   editbrandsGetMethod: (req, res) => {
@@ -289,7 +294,7 @@ if(sectionNewName){
     BRAND.findById(brandID)
       .lean()
       .then((editbrands) => {
-        res.render("admin/editbrands", { editbrands: editbrands });
+               res.render("admin/brands/editbrands", { editbrands: editbrands });
       });
   },
 
@@ -301,7 +306,7 @@ BRAND.findById(brandID).then(updatebrands=>{
 
   updatebrands.save().then(updatedBrand =>{
     req.flash('success-message' , `تم تعديل بيانات الماركة ${updatedBrand.brand_name} بنجاح`)
-  res.redirect('/admin/listallbrands');
+    res.redirect('/admin/brands/listallbrands');
   });
 });
   },
@@ -314,19 +319,19 @@ BRAND.findById(brandID).then(updatebrands=>{
           "success-message",
           `تم حذف العلامة التجارية ${deletebrands.brand_name} بنجاح`
         );
-        res.redirect("/admin/listallbrands");
+        res.redirect("/admin/brands/listallbrands");
       });
   },
 
-  //VENDORS CONTROLLING
+  // VENDORS CONTROLLING
   listallvendorsGetMethod : (req,res)=>{
     VENDOR.find().lean().then(listallvendors=>{
-      res.render('admin/listallvendors' , {listallvendors:listallvendors});
+      res.render('admin/vendors/listallvendors' , {listallvendors:listallvendors});
     });
   },
 
   definenewvendorGetMethod : (req, res) =>{
-res.render('admin/definenewvendor');
+res.render('admin/vendors/definenewvendor');
   },
 
   definenewvendorPostMethod : (req,res)=>{
@@ -340,14 +345,14 @@ res.render('admin/definenewvendor');
     newVendor.save().then(postMethod=>{
       console.log(postMethod);
       req.flash('success-message' , 'تم الاعتماد بنجاح');
-      res.redirect('/admin/listallvendors');
+      res.redirect('/admin/vendors/listallvendors');
     }); 
   },
 
   editvendorsGetMethod: (req,res) =>{
 const vendorID = req.params.id;
 VENDOR.findById(vendorID).lean().then(editvendors=>{
-  res.render('admin/editvendors' , {editvendors:editvendors});
+  res.render('admin/vendors/editvendors' , {editvendors:editvendors});
 });
   },
 
@@ -362,20 +367,31 @@ VENDOR.findById(VendorID).then(updatevendors=>{
 
   updatevendors.save().then(updatedVendors =>{
     req.flash('success-message' ,  `تم تعديل بيانات المورد ${updatedVendors.vendor_name} بنجاح`);
-    res.redirect('/admin/listallvendors');
+    res.redirect('/admin/vendors/listallvendors');
   });
 });
   },
+  deletevendorsPostMethod: (req, res) => {
+    VENDOR.findByIdAndDelete(req.params.id)
+      .lean()
+      .then((deletevendors) => {
+        req.flash(
+          "success-message",
+          `تم حذف المورد ${deletevendors.vendor_name} بنجاح`
+        );
+        res.redirect("/admin/vendors/listallvendors");
+      });
+  },
 
-   //CUSTOMERS CONTROLLING
+   // CUSTOMERS CONTROLLING
    listallcustomersGetMethod : (req,res)=>{
     CUSTOMER.find().lean().then(listallcustomers=>{
-      res.render('admin/listallcustomers' , {listallcustomers:listallcustomers});
+      res.render('admin/customers/listallcustomers' , {listallcustomers:listallcustomers});
     });
   },
 
   definenewcustomerGetMethod : (req, res) =>{
-res.render('admin/definenewcustomer');
+res.render('admin/customers/definenewcustomer');
   },
 
   definenewcustomerPostMethod : (req,res)=>{
@@ -390,14 +406,14 @@ res.render('admin/definenewcustomer');
     newCustomer.save().then(postMethod=>{
       console.log(postMethod);
       req.flash('success-message' , 'تم الاعتماد بنجاح');
-      res.redirect('/admin/listallcustomers');
+      res.redirect('/admin/customers/listallcustomers');
     }); 
   },
 
   editcustomersGetMethod: (req,res) =>{
 const customerID = req.params.id;
 CUSTOMER.findById(customerID).lean().then(editcustomers=>{
-  res.render('admin/editcustomers' , {editcustomers:editcustomers});
+  res.render('admin/customers/editcustomers' , {editcustomers:editcustomers});
 });
   },
 
@@ -413,14 +429,24 @@ CUSTOMER.findById(CustomerID).then(updatecustomers=>{
 
   updatecustomers.save().then(updatedCustomers =>{
     req.flash('success-message' ,  `تم تعديل بيانات العميل ${updatedCustomers.customer_name} بنجاح`);
-    res.redirect('/admin/listallcustomers');
+    res.redirect('/admin/customers/listallcustomers');
   });
 });
   },
-
+  deletecustomersPostMethod: (req, res) => {
+    CUSTOMER.findByIdAndDelete(req.params.id)
+      .lean()
+      .then((deletecustomers) => {
+        req.flash(
+          "success-message",
+          `تم حذف العميل ${deletecustomers.customer_name} بنجاح`
+        );
+        res.redirect("/admin/customers/listallcustomers");
+      });
+  },
 
   // PURCHASE INVOICES
   newpurchaseinvoiceGetMethod :(req,res)=>{
-    res.render('admin/newpurchaseinvoice');
+    res.render('admin/purchases/newpurchaseinvoice');
   }
 };
