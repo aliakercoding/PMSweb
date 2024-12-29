@@ -1,3 +1,4 @@
+
 // ENABLE ALL TOOLTIPS
 const tooltipTriggerList = document.querySelectorAll(
   '[data-bs-toggle="tooltip"]'
@@ -75,7 +76,42 @@ window.onload = (event) => {
 
 // PRESCRIPTION SWITCHER FUNCTIONALITY ON EDIT ITEMS PAGE
 var input = $('#PrescriptionSwitcher').val()
-if(input === "true"){
-$("#PrescriptionSwitcher").prop('checked', true);
+if (input === "true") {
+  $("#PrescriptionSwitcher").prop('checked', true);
 }
- 
+
+// SELECTING VENDORS ON PURCHASE
+$('#VendorRelated').selectize({
+  respect_word_boundaries: false,
+  plugins: ["auto_select_on_type"]
+});
+
+// PURCHASE INVOICE FUNCTIONALITIES
+$("#itemIPCinsertion").on('click',function(e){
+  e.preventDefault();
+
+  var data = $("#itemIPcode").html();
+  
+  $.ajax({
+    url: '/admin/purchases/newpurchase',
+    type: 'POST',
+    data: {name: data},
+    success: function (response) {
+      var html = ` <tr>
+                                    <th scope="row" id="itemIPcode" name="itemIPcode">{{item_barcode}}</th>
+                                    <td>{{item_name}}</td>
+                                    <td>رصيد الصنف</td>
+                                    <td class="d-flex justify-content-center">
+                                       
+                                        <form action="/admin/purchases/interprocess" method="post">
+                                            <button type="submit" class="btn btn-success" id="itemIPCinsertion" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom"
+                                                data-bs-title="إضافة الصنف المحدد"><i
+                                                    class="bi bi-plus-circle"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>`;
+    }
+  })
+})

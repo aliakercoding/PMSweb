@@ -95,5 +95,7 @@ router.route('/customers/deletecustomers/:id')
 
 // PURCHASES ROUTER
 router.route('/purchases/newpurchase')
-.get(adminController.newpurchaseinvoiceGetMethod)  
+.get(adminController.newpurchaseinvoiceGetMethod)
+.post
+
 module.exports = router;

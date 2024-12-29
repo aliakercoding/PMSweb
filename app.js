@@ -13,6 +13,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
 
+
 // Database Connetor
 mongoose
   .connect(mongoDbUrl)
@@ -30,6 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
 app.use(express.static(path.join(__dirname, "node_modules/bootstrap-icons")));
+app.use(express.static(path.join(__dirname, "node_modules/jquery/dist")));
+app.use(express.static(path.join(__dirname, "node_modules/@selectize/selectize/dist")));
 app.use(
   session({
     secret: "aapmsweb",

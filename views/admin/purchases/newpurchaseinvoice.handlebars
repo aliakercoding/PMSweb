@@ -15,22 +15,46 @@
             <div class="row py-2">
                 <div class="col">
                     <label class="visually-hidden" for="VendorRelated">شراء من مورد</label>
-                    <div class="input-group">
+                    <div class="input-group" dir="rtl">
                         <div class="input-group-text">شراء من مورد</div>
-                        <input type="text" class="form-control" id="VendorRelated" placeholder="اسم المورد">
+                        <select name="VendorRelated" class="form-control" id="VendorRelated" placeholder="اسم المورد"
+                            required>
+                            <option value=""></option>
+                            {{#each vendorquery}}
+                            <option value="{{_id}}">{{vendor_name}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                 </div>
                 <div class="col">
                     <label class="visually-hidden" for="PurchaseTime">وقت الشراء</label>
                     <div class="input-group">
                         <div class="input-group-text">وقت الشراء</div>
-                        <input type="date" class="form-control" id="PurchaseTime" placeholder="PurchaseTime">
+                        <input type="date" class="form-control" id="PurchaseTime" value="{{timeDisplay}}" readonly>
                     </div>
                 </div>
             </div>
 
         </div>
-
+        <hr>
+        <div class="relative-top">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group">
+                        <div class="input-group-text">عدد الأصناف المشتراه</div>
+                        <span class="badge rounded-pill text-bg-light form-control" style="font-size:1rem;"
+                            id="PurchaseQty" placeholder="PurchaseQty">{عدد الاصناف المشتراه}</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group">
+                        <div class="input-group-text">إجمالي الفاتورة</div>
+                        <span class="badge rounded-pill text-bg-light form-control" style="font-size:1rem;"
+                            id="InvoicePrice" placeholder="InvoicePrice">{اجمالي الفاتورة}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <hr>
         <div class="border py-2 px-2">
             <div class="row align-items-center">
@@ -38,6 +62,10 @@
                 <div class="input-group">
                     <div class="input-group-text">البحث عن صنف</div>
                     <input type="text" class="form-control" id="ItemSearch" placeholder="اسم الصنف">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                        <i class="bi bi-search"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -81,29 +109,65 @@
 
     </form>
 
-</div>
+    {{!-- ITEM SEARCH MODAL --}}
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                {{!-- ITEM LIST --}}
+                <div class="modal-body">
+                    <div class="container mt-3">
+                        <div class="border text-center">
+                            <div class="col">
+                                <div>
+                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                </div>
+                            </div>
 
-<div class="toast-container position-fixed bottom-0 start-0 p-3 mb-3">
-    <div class="toast bottom-0 end-0" id="InvoiceInfotoast" data-bs-autohide="false">
-        <div class="toast-header">
-            <button class="btn-minimize ms-auto" data-bs-toggle="collapse" data-bs-target="#autominimize"></button>
-            <strong class="ms-auto">Bootstrap</strong>
-        </div>
-        <div class="toast-body collapse collapse-horizontal show" id="autominimize">
-            <table class="table table-hover border">
-                <thead>
-                    <tr>
-                        <th scope="col">إجمالي عدد الأصناف المشتراه</th>
-                        <th scope="col">قيمة فاتورة الشراء</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{إجمالي عدد الأصناف المشتراه}</th>
-                        <td>{قيمة فاتورة الشراء}</td>
-                    </tr>
-                </tbody>
-            </table>
+                        </div>
+                        <hr>
+                        <!-- Item Table -->
+                        <table class="table table-hover border text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">المعرف الدولي للصنف</th>
+                                    <th scope="col">اسم الصنف</th>
+                                    <th scope="col">رصيد الصنف</th>
+                                    <th scope="col">عمليات علي الصنف</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each getallitems}}
+                                <tr>
+                                    <th scope="row" id="itemIPcode" name="itemIPcode">{{item_barcode}}</th>
+                                    <td>{{item_name}}</td>
+                                    <td>رصيد الصنف</td>
+                                    <td class="d-flex justify-content-center">
+                                       
+                                        <form action="/admin/purchases/interprocess" method="post">
+                                            <button type="submit" class="btn btn-success" id="itemIPCinsertion" data-bs-toggle="tooltip"
+                                                data-bs-placement="bottom"
+                                                data-bs-title="إضافة الصنف المحدد"><i
+                                                    class="bi bi-plus-circle"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">إغلاق</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

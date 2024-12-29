@@ -39,9 +39,9 @@
         <td>{{section_related.section_name}}</td>
         <td>{{brand_related.brand_name}}</td>
         <td class="d-flex justify-content-center">
-          <a href="/admin/edititems/{{_id}}" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
+          <a href="/admin/items/edititems/{{_id}}" class="btn btn-warning ms-2" data-bs-toggle="tooltip"
             data-bs-placement="bottom" data-bs-title="تعديل بيانات صنف"><i class="bi bi-pencil"></i></a>
-          <form action="/admin/deleteitems/{{_id}}?action=DELETE" method="post">
+          <form action="/admin/items/deleteitems/{{_id}}?action=DELETE" method="post">
             <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" data-bs-title="حذف الصنف <b>- لا يمكن الرجوع في هذا الإجراء</b>"><i class="bi bi-trash"></i>
             </button>
           </form>

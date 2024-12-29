@@ -4,6 +4,7 @@ const SECTION = require("../models/SECTIONS");
 const BRAND = require("../models/BRANDS");
 const VENDOR = require('../models/VENDORS');
 const CUSTOMER = require('../models/CUSTOMERS');
+const { DateTime } = require("luxon");
 
 module.exports = {
   index: (req, res) => {
@@ -121,7 +122,7 @@ module.exports = {
   edititemsPostMethod: (req, res) => {
     const itemID = req.params.id;
 
-      ITEM.findById(itemID).then(updateitems=>{
+    ITEM.findById(itemID).then(updateitems => {
       updateitems.item_barcode = req.body.itemBarcode;
       updateitems.item_name = req.body.itemName;
       updateitems.item_retail_price = req.body.itemPrice;
@@ -136,18 +137,18 @@ module.exports = {
       updateitems.brand_related = req.body.BrandSelector;
       updateitems.require_prescription = Boolean(req.body.PrescriptionSwitcher);
 
-      updateitems.save().then(updatedItem=>{
-        req.flash('success-message' , `تم تعديل بيانات المنتج ${updatedItem.item_name} بنجاح`);
+      updateitems.save().then(updatedItem => {
+        req.flash('success-message', `تم تعديل بيانات المنتج ${updatedItem.item_name} بنجاح`);
         res.redirect('/admin/items/listallitems');
 
       });
-       });
+    });
 
 
 
 
 
-   
+
 
   },
 
@@ -182,41 +183,41 @@ module.exports = {
     newCatalog.save().then((postMethod) => {
       req.flash("success-message", "تم الإعتماد بنجاح");
       res.redirect("/admin/catalogs/listallcatalogs");
-         });
-  
-  },
-
-  editcatalogsGetMethod:(req,res) =>{
-const catalogID = req.params.id;
-CATALOG.findById(catalogID).lean().then(editcatalogs=>{
-  res.render('admin/catalogs/editcatalogs' , {editcatalogs: editcatalogs});
-})
-  },
-
-  editcatalogsPostMethod: (req , res) =>{
-const catalogID = req.params.id;
-CATALOG.findById(catalogID).then(updatingCatalog =>{
-  updatingCatalog.catalog_name = req.body.catalogName;
-
-  updatingCatalog.save().then(updatedCatalog =>{
-    req.flash('success-message' , `تم تعديل بيانات الكتالوج ${updatedCatalog.catalog_name} بنجاح`)
-    res.redirect('/admin/catalogs/listallcatalogs');
-  });
-});
-},
-deletecatalogsPostMethod: (req, res) => {
-  CATALOG.findByIdAndDelete(req.params.id)
-    .lean()
-    .then((deletecatalogs) => {
-      req.flash(
-        "success-message",
-        `تم حذف الكتالوج ${deletecatalogs.catalog_name} بنجاح`
-      );
-      res.redirect("/admin/catalogs/listallcatalogs");
     });
-},
-  
-  
+
+  },
+
+  editcatalogsGetMethod: (req, res) => {
+    const catalogID = req.params.id;
+    CATALOG.findById(catalogID).lean().then(editcatalogs => {
+      res.render('admin/catalogs/editcatalogs', { editcatalogs: editcatalogs });
+    })
+  },
+
+  editcatalogsPostMethod: (req, res) => {
+    const catalogID = req.params.id;
+    CATALOG.findById(catalogID).then(updatingCatalog => {
+      updatingCatalog.catalog_name = req.body.catalogName;
+
+      updatingCatalog.save().then(updatedCatalog => {
+        req.flash('success-message', `تم تعديل بيانات الكتالوج ${updatedCatalog.catalog_name} بنجاح`)
+        res.redirect('/admin/catalogs/listallcatalogs');
+      });
+    });
+  },
+  deletecatalogsPostMethod: (req, res) => {
+    CATALOG.findByIdAndDelete(req.params.id)
+      .lean()
+      .then((deletecatalogs) => {
+        req.flash(
+          "success-message",
+          `تم حذف الكتالوج ${deletecatalogs.catalog_name} بنجاح`
+        );
+        res.redirect("/admin/catalogs/listallcatalogs");
+      });
+  },
+
+
   // SECTIONS CONTROLLING
   listallsectionsGetMethod: (req, res) => {
     SECTION.find()
@@ -229,33 +230,33 @@ deletecatalogsPostMethod: (req, res) => {
   },
 
   definenewsectionPostMethod: (req, res) => {
-  const newSection = new SECTION({
-    section_name: req.body.sectionName
-  });
+    const newSection = new SECTION({
+      section_name: req.body.sectionName
+    });
 
-  newSection.save().then((postMethod)=>{
-    req.flash("success-message", "تم الإعتماد بنجاح");
+    newSection.save().then((postMethod) => {
+      req.flash("success-message", "تم الإعتماد بنجاح");
       res.redirect("/admin/sections/listallsections");
-  })
+    })
   },
 
-  editsectionsGetMethod : (req, res) =>{
-const sectionID = req.params.id;
-SECTION.findById(sectionID).lean().then(editsections =>{
-  res.render('admin/sections/editsections' , {editsections:editsections});
-});
+  editsectionsGetMethod: (req, res) => {
+    const sectionID = req.params.id;
+    SECTION.findById(sectionID).lean().then(editsections => {
+      res.render('admin/sections/editsections', { editsections: editsections });
+    });
   },
 
-  editsectionsPostMethod : (req,res) =>{
-const sectionID = req.params.id;
+  editsectionsPostMethod: (req, res) => {
+    const sectionID = req.params.id;
 
-SECTION.findById(sectionID).then((updatesections)=>{
-  updatesections.section_name = req.body.sectionName;
-  updatesections.save().then((updatedSection)=>{
-    req.flash('success-message' , `تم تعديل بيانات القسم ${updatedSection.section_name} بنجاح`)
-    res.redirect('/admin/sections/listallsections');
-  })
-})
+    SECTION.findById(sectionID).then((updatesections) => {
+      updatesections.section_name = req.body.sectionName;
+      updatesections.save().then((updatedSection) => {
+        req.flash('success-message', `تم تعديل بيانات القسم ${updatedSection.section_name} بنجاح`)
+        res.redirect('/admin/sections/listallsections');
+      })
+    })
   },
   deletesectionsPostMethod: (req, res) => {
     SECTION.findByIdAndDelete(req.params.id)
@@ -278,7 +279,7 @@ SECTION.findById(sectionID).then((updatesections)=>{
       });
   },
 
- definenewbrandPostMethod: (req, res) => {
+  definenewbrandPostMethod: (req, res) => {
     const newBrand = new BRAND({
       brand_name: req.body.brandName,
     });
@@ -286,7 +287,7 @@ SECTION.findById(sectionID).then((updatesections)=>{
     newBrand.save().then((postMethod) => {
       req.flash("success-message", "تم الإعتماد بنجاح");
       res.redirect("/admin/brands/listallbrands");
-         });
+    });
   },
 
   editbrandsGetMethod: (req, res) => {
@@ -294,21 +295,21 @@ SECTION.findById(sectionID).then((updatesections)=>{
     BRAND.findById(brandID)
       .lean()
       .then((editbrands) => {
-               res.render("admin/brands/editbrands", { editbrands: editbrands });
+        res.render("admin/brands/editbrands", { editbrands: editbrands });
       });
   },
 
-  editbrandsPostMethod : (req, res) =>{
-const brandID = req.params.id;
+  editbrandsPostMethod: (req, res) => {
+    const brandID = req.params.id;
 
-BRAND.findById(brandID).then(updatebrands=>{
-  updatebrands.brand_name = req.body.brandName;
+    BRAND.findById(brandID).then(updatebrands => {
+      updatebrands.brand_name = req.body.brandName;
 
-  updatebrands.save().then(updatedBrand =>{
-    req.flash('success-message' , `تم تعديل بيانات الماركة ${updatedBrand.brand_name} بنجاح`)
-    res.redirect('/admin/brands/listallbrands');
-  });
-});
+      updatebrands.save().then(updatedBrand => {
+        req.flash('success-message', `تم تعديل بيانات الماركة ${updatedBrand.brand_name} بنجاح`)
+        res.redirect('/admin/brands/listallbrands');
+      });
+    });
   },
 
   deletebrandsPostMethod: (req, res) => {
@@ -324,17 +325,17 @@ BRAND.findById(brandID).then(updatebrands=>{
   },
 
   // VENDORS CONTROLLING
-  listallvendorsGetMethod : (req,res)=>{
-    VENDOR.find().lean().then(listallvendors=>{
-      res.render('admin/vendors/listallvendors' , {listallvendors:listallvendors});
+  listallvendorsGetMethod: (req, res) => {
+    VENDOR.find().lean().then(listallvendors => {
+      res.render('admin/vendors/listallvendors', { listallvendors: listallvendors });
     });
   },
 
-  definenewvendorGetMethod : (req, res) =>{
-res.render('admin/vendors/definenewvendor');
+  definenewvendorGetMethod: (req, res) => {
+    res.render('admin/vendors/definenewvendor');
   },
 
-  definenewvendorPostMethod : (req,res)=>{
+  definenewvendorPostMethod: (req, res) => {
     const newVendor = new VENDOR({
       vendor_name: req.body.vendorName,
       vendor_contact: req.body.vendorContact,
@@ -342,34 +343,34 @@ res.render('admin/vendors/definenewvendor');
       total_debit: req.body.vendorDebit
     });
 
-    newVendor.save().then(postMethod=>{
+    newVendor.save().then(postMethod => {
       console.log(postMethod);
-      req.flash('success-message' , 'تم الاعتماد بنجاح');
+      req.flash('success-message', 'تم الاعتماد بنجاح');
       res.redirect('/admin/vendors/listallvendors');
-    }); 
+    });
   },
 
-  editvendorsGetMethod: (req,res) =>{
-const vendorID = req.params.id;
-VENDOR.findById(vendorID).lean().then(editvendors=>{
-  res.render('admin/vendors/editvendors' , {editvendors:editvendors});
-});
+  editvendorsGetMethod: (req, res) => {
+    const vendorID = req.params.id;
+    VENDOR.findById(vendorID).lean().then(editvendors => {
+      res.render('admin/vendors/editvendors', { editvendors: editvendors });
+    });
   },
 
-  editvendorsPostMethod:(req,res)=>{
-const VendorID = req.params.id;
+  editvendorsPostMethod: (req, res) => {
+    const VendorID = req.params.id;
 
-VENDOR.findById(VendorID).then(updatevendors=>{
-  updatevendors.vendor_name = req.body.vendorName,
-  updatevendors.vendor_contact = req.body.vendorContact,
-  updatevendors.vendor_address = req.body.vendorAddress,
-  updatevendors.total_debit = req.body.vendorDebit
+    VENDOR.findById(VendorID).then(updatevendors => {
+      updatevendors.vendor_name = req.body.vendorName,
+        updatevendors.vendor_contact = req.body.vendorContact,
+        updatevendors.vendor_address = req.body.vendorAddress,
+        updatevendors.total_debit = req.body.vendorDebit
 
-  updatevendors.save().then(updatedVendors =>{
-    req.flash('success-message' ,  `تم تعديل بيانات المورد ${updatedVendors.vendor_name} بنجاح`);
-    res.redirect('/admin/vendors/listallvendors');
-  });
-});
+      updatevendors.save().then(updatedVendors => {
+        req.flash('success-message', `تم تعديل بيانات المورد ${updatedVendors.vendor_name} بنجاح`);
+        res.redirect('/admin/vendors/listallvendors');
+      });
+    });
   },
   deletevendorsPostMethod: (req, res) => {
     VENDOR.findByIdAndDelete(req.params.id)
@@ -383,18 +384,18 @@ VENDOR.findById(VendorID).then(updatevendors=>{
       });
   },
 
-   // CUSTOMERS CONTROLLING
-   listallcustomersGetMethod : (req,res)=>{
-    CUSTOMER.find().lean().then(listallcustomers=>{
-      res.render('admin/customers/listallcustomers' , {listallcustomers:listallcustomers});
+  // CUSTOMERS CONTROLLING
+  listallcustomersGetMethod: (req, res) => {
+    CUSTOMER.find().lean().then(listallcustomers => {
+      res.render('admin/customers/listallcustomers', { listallcustomers: listallcustomers });
     });
   },
 
-  definenewcustomerGetMethod : (req, res) =>{
-res.render('admin/customers/definenewcustomer');
+  definenewcustomerGetMethod: (req, res) => {
+    res.render('admin/customers/definenewcustomer');
   },
 
-  definenewcustomerPostMethod : (req,res)=>{
+  definenewcustomerPostMethod: (req, res) => {
     const newCustomer = new CUSTOMER({
       customer_name: req.body.customerName,
       customer_contact: req.body.customerContact,
@@ -403,35 +404,35 @@ res.render('admin/customers/definenewcustomer');
       total_credit: req.body.customerCredit
     });
 
-    newCustomer.save().then(postMethod=>{
+    newCustomer.save().then(postMethod => {
       console.log(postMethod);
-      req.flash('success-message' , 'تم الاعتماد بنجاح');
+      req.flash('success-message', 'تم الاعتماد بنجاح');
       res.redirect('/admin/customers/listallcustomers');
-    }); 
+    });
   },
 
-  editcustomersGetMethod: (req,res) =>{
-const customerID = req.params.id;
-CUSTOMER.findById(customerID).lean().then(editcustomers=>{
-  res.render('admin/customers/editcustomers' , {editcustomers:editcustomers});
-});
+  editcustomersGetMethod: (req, res) => {
+    const customerID = req.params.id;
+    CUSTOMER.findById(customerID).lean().then(editcustomers => {
+      res.render('admin/customers/editcustomers', { editcustomers: editcustomers });
+    });
   },
 
-  editcustomersPostMethod:(req,res)=>{
-const CustomerID = req.params.id;
+  editcustomersPostMethod: (req, res) => {
+    const CustomerID = req.params.id;
 
-CUSTOMER.findById(CustomerID).then(updatecustomers=>{
-  updatecustomers.customer_name = req.body.customerName,
-  updatecustomers.customer_contact = req.body.customerContact,
-  updatecustomers.customer_address = req.body.customerAddress,
-  updatecustomers.total_acquired_points = req.body.customerAcquiredPoints,
-  updatecustomers.total_credit = req.body.customerCredit
+    CUSTOMER.findById(CustomerID).then(updatecustomers => {
+      updatecustomers.customer_name = req.body.customerName,
+        updatecustomers.customer_contact = req.body.customerContact,
+        updatecustomers.customer_address = req.body.customerAddress,
+        updatecustomers.total_acquired_points = req.body.customerAcquiredPoints,
+        updatecustomers.total_credit = req.body.customerCredit
 
-  updatecustomers.save().then(updatedCustomers =>{
-    req.flash('success-message' ,  `تم تعديل بيانات العميل ${updatedCustomers.customer_name} بنجاح`);
-    res.redirect('/admin/customers/listallcustomers');
-  });
-});
+      updatecustomers.save().then(updatedCustomers => {
+        req.flash('success-message', `تم تعديل بيانات العميل ${updatedCustomers.customer_name} بنجاح`);
+        res.redirect('/admin/customers/listallcustomers');
+      });
+    });
   },
   deletecustomersPostMethod: (req, res) => {
     CUSTOMER.findByIdAndDelete(req.params.id)
@@ -446,7 +447,30 @@ CUSTOMER.findById(CustomerID).then(updatecustomers=>{
   },
 
   // PURCHASE INVOICES
-  newpurchaseinvoiceGetMethod :(req,res)=>{
-    res.render('admin/purchases/newpurchaseinvoice');
-  }
+  newpurchaseinvoiceGetMethod: (req, res) => {
+    // Configuring Time Zones
+    let dateTime = DateTime.local();
+    let timeDisplay = dateTime.toISODate();
+
+    // VENDOR LISTING
+    VENDOR.find().lean().then(vendorquery => {
+      if (!vendorquery) {
+
+      } else {
+        ITEM.find().lean().then(getallitems => {
+          res.render('admin/purchases/newpurchaseinvoice', { timeDisplay: timeDisplay, vendorquery: vendorquery, getallitems: getallitems });
+
+        })
+      }
+    })
+
+  },
+
+  
+    // IPC
+    itemIPCGetMethod:(req,res)=>{
+var IPC = req.body.name;
+console.log(IPC);
+    }
+
 };
