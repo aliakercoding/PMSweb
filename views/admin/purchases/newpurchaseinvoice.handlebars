@@ -83,19 +83,20 @@
                             <th scope="col">الكمية المشتراه</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" contenteditable>{باركود الصنف}</th>
-                            <td>{اسم الصنف}</td>
+                    <tbody class="IPClist" id="AA">
+                        {{!-- <tr>
+                            <th scope="row" class="apiURI" contenteditable>123</th>
+                            <td>{{data.item_name}}</td>
                             <td>{سعر شراء الصنف}</td>
                             <td>{نسبة الضريبة}</td>
                             <td>{قيمة الضريبة}</td>
                             <td>{سعر بيع المنتج}</td>
                             <td contenteditable>{الكمية المشتراه}</td>
                             <td>
+                                <a class="btn btn-warning ms-2 linkAPI"></a>
                                 <button class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button>
                             </td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
             </div>
@@ -148,12 +149,11 @@
                                     <td>{{item_name}}</td>
                                     <td>رصيد الصنف</td>
                                     <td class="d-flex justify-content-center">
-                                       
-                                        <form action="/admin/purchases/interprocess" method="post">
-                                            <button type="submit" class="btn btn-success" id="itemIPCinsertion" data-bs-toggle="tooltip"
-                                                data-bs-placement="bottom"
-                                                data-bs-title="إضافة الصنف المحدد"><i
-                                                    class="bi bi-plus-circle"></i>
+
+                                        <form action="/api/getOne/{{item_barcode}}" method="post">
+                                            <button type="submit" class="btn btn-success" id="itemIPCinsertion"
+                                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                data-bs-title="إضافة الصنف المحدد"><i class="bi bi-plus-circle"></i>
                                             </button>
                                         </form>
                                     </td>

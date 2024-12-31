@@ -96,6 +96,6 @@ router.route('/customers/deletecustomers/:id')
 // PURCHASES ROUTER
 router.route('/purchases/newpurchase')
 .get(adminController.newpurchaseinvoiceGetMethod)
-.post
+.post(adminController.itemIPCGetMethod);
 
 module.exports = router;

@@ -87,31 +87,69 @@ $('#VendorRelated').selectize({
 });
 
 // PURCHASE INVOICE FUNCTIONALITIES
-$("#itemIPCinsertion").on('click',function(e){
-  e.preventDefault();
+$("#itemIPCinsertion").on('click', function (e) {
+  e.preventDefault()});
 
-  var data = $("#itemIPcode").html();
-  
-  $.ajax({
-    url: '/admin/purchases/newpurchase',
-    type: 'POST',
-    data: {name: data},
-    success: function (response) {
-      var html = ` <tr>
-                                    <th scope="row" id="itemIPcode" name="itemIPcode">{{item_barcode}}</th>
-                                    <td>{{item_name}}</td>
-                                    <td>رصيد الصنف</td>
-                                    <td class="d-flex justify-content-center">
-                                       
-                                        <form action="/admin/purchases/interprocess" method="post">
-                                            <button type="submit" class="btn btn-success" id="itemIPCinsertion" data-bs-toggle="tooltip"
-                                                data-bs-placement="bottom"
-                                                data-bs-title="إضافة الصنف المحدد"><i
-                                                    class="bi bi-plus-circle"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>`;
-    }
-  })
-})
+  //   var data = $("#itemIPcode").html();
+
+  //   $.ajax({
+  //     url: '/admin/purchases/newpurchase',
+  //     type: 'POST',
+  //     data: { name: data },
+  //     success: function (response) {
+  //       var html = `<tr>
+  //                             <th scope="row" class="apiURI" contenteditable>${response}</th>
+  //                             <td>{اسم الصنف}</td>
+  //                             <td>{سعر شراء الصنف}</td>
+  //                             <td>{نسبة الضريبة}</td>
+  //                             <td>{قيمة الضريبة}</td>
+  //                             <td>{سعر بيع المنتج}</td>
+  //                             <td contenteditable>{الكمية المشتراه}</td>
+  //                             <td>
+  //                             <a class="btn btn-warning ms-2 linkAPI"></a>
+  //                                 <button class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button>
+  //                             </td>
+  //                         </tr>`;
+
+  //       $(".IPClist").append(html);
+
+  //     }
+  //   })
+  // });
+
+
+  // // create an observer instance
+  // var target = document.querySelector('#AA');
+  // var linkAPI = $('.linkAPI');
+  // var observer = new WebKitMutationObserver(function (mutations) {
+  //   mutations.forEach(function (mutation) {
+  //     var apiURI = $('.apiURI').html();
+  //     $('.linkAPI').hover(function () {
+  //       this.href = `/api/GetOne/${apiURI}`;
+  //     });
+  //     console.log(apiURI);
+  //     console.log(linkAPI);
+  //   });
+  // });
+  // observer.observe(target, { attributes: true, childList: true, characterData: true, subtree: true });
+  // //observer.disconnect(); - to stop observing
+
+  var collector = $('#itemIPcode').html();
+  console.log(collector);
+  fetch(`/api/getOne/${collector}`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (dataReturned) {
+      let placeholder = document.querySelector("#AA");
+      let out = "";
+      for (let data of dataReturned) {
+        out += `
+    <tr>
+    <td>${data.item_barcode}</td>
+    </tr>
+    `;
+
+      }
+      placeholder.innerHTML = out;
+    })

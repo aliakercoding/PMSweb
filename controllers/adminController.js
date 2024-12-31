@@ -451,11 +451,10 @@ module.exports = {
     // Configuring Time Zones
     let dateTime = DateTime.local();
     let timeDisplay = dateTime.toISODate();
-
     // VENDOR LISTING
     VENDOR.find().lean().then(vendorquery => {
       if (!vendorquery) {
-
+       
       } else {
         ITEM.find().lean().then(getallitems => {
           res.render('admin/purchases/newpurchaseinvoice', { timeDisplay: timeDisplay, vendorquery: vendorquery, getallitems: getallitems });
@@ -466,11 +465,15 @@ module.exports = {
 
   },
 
-  
-    // IPC
-    itemIPCGetMethod:(req,res)=>{
-var IPC = req.body.name;
-console.log(IPC);
+
+  // IPC
+  itemIPCGetMethod: (req, res) => {
+    var IPC = req.body.name;
+    if (IPC) {
+      res.status(200).json(IPC); 
     }
+  },
+
+ 
 
 };

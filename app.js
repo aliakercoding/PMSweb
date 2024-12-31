@@ -54,8 +54,10 @@ app.use(methodOverride("action"));
 // Configuring Routers
 const mainRouter = require("./routers/mainRouter");
 const adminRouter = require("./routers/adminRouter");
+const apiRouter = require('./routers/apiRouter');
 app.use("/", mainRouter);
 app.use("/admin", adminRouter);
+app.use("/api", apiRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
