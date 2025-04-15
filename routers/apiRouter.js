@@ -7,7 +7,7 @@ router.get('/getOne/:id', async (req, res) => {
     const apiURI = req.params.id;
     console.log(apiURI)
     try {
-        const data = await ITEM.find({ item_barcode: apiURI });
+        const data = await ITEM.find({ _id: apiURI });
         res.json(data);
     }
     catch (error) {

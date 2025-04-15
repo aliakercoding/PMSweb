@@ -451,6 +451,7 @@ module.exports = {
     // Configuring Time Zones
     let dateTime = DateTime.local();
     let timeDisplay = dateTime.toISODate();
+    let API = req.body.ItemRelated;
     // VENDOR LISTING
     VENDOR.find().lean().then(vendorquery => {
       if (!vendorquery) {
@@ -463,15 +464,6 @@ module.exports = {
       }
     })
 
-  },
-
-
-  // IPC
-  itemIPCGetMethod: (req, res) => {
-    var IPC = req.body.name;
-    if (IPC) {
-      res.status(200).json(IPC); 
-    }
   },
 
  

@@ -58,20 +58,22 @@
         <hr>
         <div class="border py-2 px-2">
             <div class="row align-items-center">
-                <label class="visually-hidden" for="ItemSearch">البحث عن صنف</label>
-                <div class="input-group">
-                    <div class="input-group-text">البحث عن صنف</div>
-                    <input type="text" class="form-control" id="ItemSearch" placeholder="اسم الصنف">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">
-                        <i class="bi bi-search"></i>
-                    </button>
+                <label class="visually-hidden" for="ItemRelated">شراء من مورد</label>
+                <div class="input-group" dir="rtl">
+                    <div class="input-group-text">شراء من مورد</div>
+                    <select name="ItemRelated" id="ItemRelated" class="form-control" placeholder="اسم المورد" required>
+                        <option value=""></option>
+                        {{#each getallitems}}
+                        <option value="{{_id}}">{{item_name}}</option>
+                        {{/each}}
+                    </select>
+                    <button id="loadDataBtn" class="btn btn-primary me-2"><i class="bi bi-plus-square"></i></button>
                 </div>
             </div>
         </div>
         <div class="py-2 px-2">
             <div class="row align-items-center table-responsive">
-                <table class="table table-hover border">
+                <table class="table table-hover border" id="dataTable">
                     <thead>
                         <tr>
                             <th scope="col">باركود الصنف</th>
@@ -83,20 +85,8 @@
                             <th scope="col">الكمية المشتراه</th>
                         </tr>
                     </thead>
-                    <tbody class="IPClist" id="AA">
-                        {{!-- <tr>
-                            <th scope="row" class="apiURI" contenteditable>123</th>
-                            <td>{{data.item_name}}</td>
-                            <td>{سعر شراء الصنف}</td>
-                            <td>{نسبة الضريبة}</td>
-                            <td>{قيمة الضريبة}</td>
-                            <td>{سعر بيع المنتج}</td>
-                            <td contenteditable>{الكمية المشتراه}</td>
-                            <td>
-                                <a class="btn btn-warning ms-2 linkAPI"></a>
-                                <button class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button>
-                            </td>
-                        </tr> --}}
+                    <tbody>
+                        {{!-- Data Insertion --}}
                     </tbody>
                 </table>
             </div>
@@ -110,64 +100,5 @@
 
     </form>
 
-    {{!-- ITEM SEARCH MODAL --}}
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                {{!-- ITEM LIST --}}
-                <div class="modal-body">
-                    <div class="container mt-3">
-                        <div class="border text-center">
-                            <div class="col">
-                                <div>
-                                    <input class="form-control me-2" type="search" placeholder="Search"
-                                        aria-label="Search">
-                                </div>
-                            </div>
 
-                        </div>
-                        <hr>
-                        <!-- Item Table -->
-                        <table class="table table-hover border text-center">
-                            <thead>
-                                <tr>
-                                    <th scope="col">المعرف الدولي للصنف</th>
-                                    <th scope="col">اسم الصنف</th>
-                                    <th scope="col">رصيد الصنف</th>
-                                    <th scope="col">عمليات علي الصنف</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each getallitems}}
-                                <tr>
-                                    <th scope="row" id="itemIPcode" name="itemIPcode">{{item_barcode}}</th>
-                                    <td>{{item_name}}</td>
-                                    <td>رصيد الصنف</td>
-                                    <td class="d-flex justify-content-center">
-
-                                        <form action="/api/getOne/{{item_barcode}}" method="post">
-                                            <button type="submit" class="btn btn-success" id="itemIPCinsertion"
-                                                data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                data-bs-title="إضافة الصنف المحدد"><i class="bi bi-plus-circle"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                {{/each}}
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">إغلاق</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

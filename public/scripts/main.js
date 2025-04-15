@@ -86,70 +86,39 @@ $('#VendorRelated').selectize({
   plugins: ["auto_select_on_type"]
 });
 
-// PURCHASE INVOICE FUNCTIONALITIES
-$("#itemIPCinsertion").on('click', function (e) {
-  e.preventDefault()});
-
-  //   var data = $("#itemIPcode").html();
-
-  //   $.ajax({
-  //     url: '/admin/purchases/newpurchase',
-  //     type: 'POST',
-  //     data: { name: data },
-  //     success: function (response) {
-  //       var html = `<tr>
-  //                             <th scope="row" class="apiURI" contenteditable>${response}</th>
-  //                             <td>{اسم الصنف}</td>
-  //                             <td>{سعر شراء الصنف}</td>
-  //                             <td>{نسبة الضريبة}</td>
-  //                             <td>{قيمة الضريبة}</td>
-  //                             <td>{سعر بيع المنتج}</td>
-  //                             <td contenteditable>{الكمية المشتراه}</td>
-  //                             <td>
-  //                             <a class="btn btn-warning ms-2 linkAPI"></a>
-  //                                 <button class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button>
-  //                             </td>
-  //                         </tr>`;
-
-  //       $(".IPClist").append(html);
-
-  //     }
-  //   })
-  // });
+// SELECTING ITEMS ON PURCHASE
+$('#ItemRelated').selectize({
+  respect_word_boundaries: false,
+  plugins: ["auto_select_on_type"]
+});
 
 
-  // // create an observer instance
-  // var target = document.querySelector('#AA');
-  // var linkAPI = $('.linkAPI');
-  // var observer = new WebKitMutationObserver(function (mutations) {
-  //   mutations.forEach(function (mutation) {
-  //     var apiURI = $('.apiURI').html();
-  //     $('.linkAPI').hover(function () {
-  //       this.href = `/api/GetOne/${apiURI}`;
-  //     });
-  //     console.log(apiURI);
-  //     console.log(linkAPI);
-  //   });
-  // });
-  // observer.observe(target, { attributes: true, childList: true, characterData: true, subtree: true });
-  // //observer.disconnect(); - to stop observing
+var getallitems = document.getElementById("#ItemRelated").val();
+console.log(getallitems);
 
-  var collector = $('#itemIPcode').html();
-  console.log(collector);
-  fetch(`/api/getOne/${collector}`)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (dataReturned) {
-      let placeholder = document.querySelector("#AA");
-      let out = "";
-      for (let data of dataReturned) {
-        out += `
-    <tr>
-    <td>${data.item_barcode}</td>
-    </tr>
-    `;
+$("#loadDataBtn").click(function () {
+  // Fetch data from the JSON file
+  $.ajax({
+    url: `/api/getOne/"${getallitems}`, //Path to your JSON file
+    method: "GET",
+    dataType: "json",
+    success: function (data) {
+      console.log(data);
+      let tableRows = "";
+      data.forEach(item => {
+        tableRows += `
+                <tr>
+                  <td>${item.id}</td>
+                  <td>${item.name}</td>
+                  <td>${item.email}</td>
+                </tr>
+              `;
+      });
+      $("#dataTable tbody").html(tableRows); // Insert rows into the table
+    },
+    error: function (error) {
+      console.error("Error fetching data:", error);
+    }
+  });
+});
 
-      }
-      placeholder.innerHTML = out;
-    })
