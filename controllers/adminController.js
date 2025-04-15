@@ -451,7 +451,6 @@ module.exports = {
     // Configuring Time Zones
     let dateTime = DateTime.local();
     let timeDisplay = dateTime.toISODate();
-    let API = req.body.ItemRelated;
     // VENDOR LISTING
     VENDOR.find().lean().then(vendorquery => {
       if (!vendorquery) {
